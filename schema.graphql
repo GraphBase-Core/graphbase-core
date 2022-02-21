@@ -1,0 +1,16 @@
+type Person @model {
+    firstName: String!
+    lastName: String!
+    age: Int!
+    someFloat: Float
+    friends: [Person!]!
+}
+
+type Query {
+    version: String
+}
+type Mutation {
+    version: String
+}
+
+directive @model on OBJECT

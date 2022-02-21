@@ -2,18 +2,21 @@
     "scripts": {
         "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
         "build": "tsc --build tsconfig.json",
-        "start": "tsc --build tsconfig.json --watch",
-        "go": "node ./lib/app.js"
+        "start": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js"
     },
     "devDependencies": {
         "typescript": "^4.5.5"
     },
     "dependencies": {
+        "@types/node": "^17.0.19",
         "@typescript-eslint/eslint-plugin": "^5.12.0",
         "@typescript-eslint/parser": "^5.12.0",
         "eslint": "^8.9.0",
         "eslint-config-prettier": "^8.4.0",
         "eslint-plugin-prettier": "^4.0.0",
-        "prettier": "^2.5.1"
+        "node": "^17.4.0",
+        "nodemon": "^2.0.15",
+        "prettier": "^2.5.1",
+        "transform-graphql": "^0.0.3"
     }
 }
