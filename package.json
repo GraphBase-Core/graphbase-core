@@ -1,0 +1,19 @@
+{
+    "scripts": {
+        "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
+        "build": "tsc --build tsconfig.json",
+        "start": "tsc --build tsconfig.json --watch",
+        "go": "node ./lib/app.js"
+    },
+    "devDependencies": {
+        "typescript": "^4.5.5"
+    },
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.12.0",
+        "@typescript-eslint/parser": "^5.12.0",
+        "eslint": "^8.9.0",
+        "eslint-config-prettier": "^8.4.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "prettier": "^2.5.1"
+    }
+}
