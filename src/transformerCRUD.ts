@@ -1,3 +1,5 @@
+import { generateModel } from './generateModel';
+import { TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 
 export const transformerCRUD: TransformerDef = {
@@ -11,12 +13,15 @@ export const transformerCRUD: TransformerDef = {
         if (!operations.mutation) {
             throw new Error('Query type required');
         }
+        const typedFields = TreeToGraphQL.parse({ nodes: field.args });
+        generateModel(typedFields, field.name);
+
         return `
         input Create${field.name}{
-            ${field.args.map((a) => `${a.name}: ${a.type.name}`)}
+            ${typedFields}
         }
         input Update${field.name}{
-            ${field.args.map((a) => `${a.name}: ${a.type.name}`)}
+            ${typedFields}
         }
         input Details${field.name}{
             id: String!

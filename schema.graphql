@@ -1,16 +1,28 @@
+directive @model on OBJECT
+
 type Person @model {
     firstName: String!
     lastName: String!
     age: Int!
     someFloat: Float
-    friends: [Person!]!
+    someBoolean: Boolean
+}
+
+type Car @model {
+    mark: String!
+    price: Float!
+    model: String
 }
 
 type Query {
     version: String
 }
+
 type Mutation {
     version: String
 }
 
-directive @model on OBJECT
+schema {
+    query: Query
+    mutation: Mutation
+}
