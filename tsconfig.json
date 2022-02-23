@@ -3,9 +3,9 @@
         "target": "es6" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
         "module": "commonjs" /* Specify what module code is generated. */,
         "rootDir": "./src" /* Specify the root folder within your source files. */,
-        "baseUrl": "./src/" /* Specify the base directory to resolve non-relative module names. */,
+        "baseUrl": "./src" /* Specify the base directory to resolve non-relative module names. */,
         "paths": {
-            "@/*": ["./*"]
+            "@/*": ["./src/*"]
         } /* Specify a set of entries that re-map imports to additional lookup locations. */,
         "typeRoots": [
             "./node_modules/@types",
