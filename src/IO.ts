@@ -1,10 +1,10 @@
 import fs from 'fs';
 export const readSchemaFromFiles = (path?: string) => {
-    const pathToSchema = path || 'schema.graphql';
+    const pathToSchema = path || 'input_schema.graphql';
     return fs.readFileSync(pathToSchema, 'utf-8');
 };
 export const writeSchemaToFile = (data: string) => {
-    fs.writeFile('src/generated/new_schema.graphql', data, (err) => {
+    fs.writeFile('schema.graphql', data, (err) => {
         if (err) {
             console.error(err);
             return;

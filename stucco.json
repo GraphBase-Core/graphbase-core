@@ -1,0 +1,14 @@
+{
+    "resolvers": {
+        "Mutation.PersonMutation": {
+            "resolve": {
+                "name": "lib/stucco/create"
+            }
+        },
+        "Query.version": {
+            "resolve": {
+                "name": "lib/stucco/create"
+            }
+        }
+    }
+}
