@@ -15,11 +15,15 @@ const newStrigify = (x: StructuredData): string => {
 
 export const generateModel = (typedFields: string, nameField: string) => {
     const arrayWithTypes = typedFields.split(/(\r\n|\n|\r)/gm).filter((i) => i !== '\n' && i !== '');
-    const newObj: LooseObject = {};
+    const modelObject: LooseObject = {};
     arrayWithTypes.map((i) => {
         const fieldTuple = i.split(':');
-        newObj[fieldTuple[0]] = graphQLTypesToTS(fieldTuple[1]);
+        modelObject[fieldTuple[0]] = graphQLTypesToTS(fieldTuple[1]);
     });
-    const model = `export type ${nameField}Model = ` + newStrigify(newObj);
+    const modelDetailsObject: LooseObject = {};
+    modelDetailsObject['_id'] = 'string';
+    const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
+    const detailsModel = `export type ${nameField}ModelDetails = ` + newStrigify(modelDetailsObject);
     writeModelToFile(model);
+    writeModelToFile(detailsModel);
 };
