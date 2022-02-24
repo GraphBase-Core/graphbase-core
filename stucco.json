@@ -1,13 +1,34 @@
 {
     "resolvers": {
-        "Mutation.PersonMutation": {
+        "Mutation.person": {
+            "skip": true
+        },
+        "Query.person": {
+            "skip": true
+        },
+        "PersonMutation.create": {
             "resolve": {
-                "name": "lib/stucco/create"
+                "name": "lib/stucco/Person/create"
             }
         },
-        "Query.version": {
+        "PersonMutation.update": {
             "resolve": {
-                "name": "lib/stucco/create"
+                "name": "lib/stucco/Person/update"
+            }
+        },
+        "PersonMutation.delete": {
+            "resolve": {
+                "name": "lib/stucco/Person/delete"
+            }
+        },
+        "PersonQuery.readAll": {
+            "resolve": {
+                "name": "lib/stucco/Person/readAll"
+            }
+        },
+        "PersonQuery.readOne": {
+            "resolve": {
+                "name": "lib/stucco/Person/readOne"
             }
         }
     }

@@ -19,8 +19,8 @@ input DetailsPerson{
 }
 
 type PersonQuery{
-	list: [Person!]!
-	getByDetails(
+	readAll: [Person!]!
+	readOne(
 		details: DetailsPerson
 	): Person
 }
@@ -33,7 +33,7 @@ type PersonMutation{
 		person: UpdatePerson
 		details: DetailsPerson
 	): String!
-	remove(
+	delete(
 		details: DetailsPerson
 	): String!
 }
@@ -55,8 +55,8 @@ input DetailsCar{
 }
 
 type CarQuery{
-	list: [Car!]!
-	getByDetails(
+	readAll: [Car!]!
+	readOne(
 		details: DetailsCar
 	): Car
 }
@@ -69,7 +69,7 @@ type CarMutation{
 		car: UpdateCar
 		details: DetailsCar
 	): String!
-	remove(
+	delete(
 		details: DetailsCar
 	): String!
 }

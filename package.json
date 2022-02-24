@@ -3,7 +3,7 @@
         "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
         "build": "tsc --build tsconfig.json",
         "start": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js",
-        "start-stucco": "tsc --build tsconfig.json --watch & node ./lib/app.js & stucco"
+        "start-stucco": "tsc --build tsconfig.json  & node ./lib/app.js & stucco"
     },
     "devDependencies": {
         "typescript": "^4.5.5"
@@ -20,7 +20,7 @@
         "node": "^17.4.0",
         "nodemon": "^2.0.15",
         "prettier": "^2.5.1",
-        "stucco-js": "^0.9.9",
+        "stucco-js": "^0.9.10",
         "transform-graphql": "^0.0.4"
     }
 }
