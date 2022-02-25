@@ -1,0 +1,23 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GraphBase-Native/graphbase-native/issues"
+  },
+  "homepage": "https://github.com/GraphBase-Native/graphbase-native#readme",
+  "scripts": {
+    "gen": "graphbase-native",
+    "start": "npm run gen && npm run build && stucco",
+    "lint": "eslint 'src/**/*.{js,ts}' --quiet --fix",
+    "build": "tsc --build tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "stucco-js": "^0.9.10"
+  }
+}

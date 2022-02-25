@@ -1,6 +1,6 @@
 export const fillReadOneFile = (fildName: string) =>
     `import { ${fildName}Model } from '../../generated/model';
-import { mc } from '../../db/mongoDB/connection';
+import { mc } from 'graphbase-native';
 
 export default async (input: any) => {
     const { db } = await mc();

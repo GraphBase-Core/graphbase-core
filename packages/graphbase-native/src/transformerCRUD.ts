@@ -1,4 +1,4 @@
-import { createStuccoDirs, generateCRUD } from './IO';
+import { generateCRUD } from './IO';
 import { TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 import { generateModel } from './generateModel';
@@ -16,7 +16,6 @@ export const transformerCRUD: TransformerDef = {
         }
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
         generateModel(typedFields, field.name);
-        createStuccoDirs();
         generateCRUD(field.name);
 
         return `
