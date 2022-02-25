@@ -12,7 +12,6 @@ let mongoConnection: mongoConnectionType = undefined;
 
 export const mc = async () => {
     if (mongoConnection) return mongoConnection;
-    console.log('aaaa');
 
     if (process.env.DATABASE_URL) {
         throw new Error('Please provide database url in your environment settings');

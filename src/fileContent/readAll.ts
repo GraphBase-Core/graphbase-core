@@ -1,8 +1,10 @@
 export const fillReadAllFile = (fildName: string) =>
-    `import { FieldResolveInput } from 'stucco-js';
+    `import { ${fildName}Model } from '../../generated/model';
+import { mc } from '../../db/mongoDB/connection';
 
-export default async (input: FieldResolveInput) => {
-    console.log(input.arguments);
-    return {person :{age: 12}};
+export default async () => {
+    const { db } = await mc();
+    const res = await db.collection<${fildName}Model>('${fildName}').find().toArray();
+    return res;
 };
 `;

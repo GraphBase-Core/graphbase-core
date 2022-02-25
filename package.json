@@ -2,8 +2,9 @@
     "scripts": {
         "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
         "build": "tsc --build tsconfig.json",
-        "start": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js",
-        "start-stucco": "tsc --build tsconfig.json  & node ./lib/app.js & stucco"
+        "start": "node ./lib/app.js",
+        "stucco": "stucco",
+        "dev": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js"
     },
     "devDependencies": {
         "typescript": "^4.5.5"
