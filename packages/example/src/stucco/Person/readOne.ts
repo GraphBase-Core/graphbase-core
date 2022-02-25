@@ -1,8 +1,11 @@
+/* DO NOT EDIT - generated */
 import { PersonModel } from '../../generated/model';
-import { mc } from 'graphbase-native';
+import { Db, ObjectId } from 'mongodb';
+import { makeHandler } from 'graphbase-native';
 
-export default async (input: any) => {
-    const { db } = await mc();
-    const res = await db.collection<PersonModel>('Person').findOne({ _id: input.arguments.details._id });
-    return res;
-};
+const readOneHandler = (db: Db) => (input: any) =>
+  db
+    .collection<PersonModel>('Person')
+    .findOne({ _id: new ObjectId(input.arguments.details._id) });
+
+export const handler = makeHandler({ handlerFactory: readOneHandler });

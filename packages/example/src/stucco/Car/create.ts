@@ -1,10 +1,11 @@
+/* DO NOT EDIT - generated */
 import { CarModel } from '../../generated/model';
-import { mc, FieldResolveInput } from 'graphbase-native';
+import { Db } from 'mongodb';
+import { makeHandler } from 'graphbase-native';
 
-export default async (input: FieldResolveInput) => {
-  const { db } = await mc();
-  const res = await db
+const createHandler = (db: Db) => (input: any) =>
+  db
     .collection<CarModel>('Car')
     .insertOne({ ...(input.arguments as CarModel) });
-  return res.insertedId;
-};
+
+export const handler = makeHandler({ handlerFactory: createHandler });

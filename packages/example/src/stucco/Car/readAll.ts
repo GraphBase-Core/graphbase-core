@@ -1,8 +1,9 @@
+/* DO NOT EDIT - generated */
 import { CarModel } from '../../generated/model';
-import { mc } from 'graphbase-native';
+import { Db } from 'mongodb';
+import { makeHandler } from 'graphbase-native';
 
-export default async () => {
-    const { db } = await mc();
-    const res = await db.collection<CarModel>('Car').find().toArray();
-    return res;
-};
+const readAllHandler = (db: Db) => () =>
+    db.collection<CarModel>('Car').find().toArray();
+
+export const handler = makeHandler({ handlerFactory: readAllHandler });

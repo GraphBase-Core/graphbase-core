@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start:example": "npm run build -w graphbase-native && npm run start -w example"
+    "start:example": "npm run build -w graphbase-native && npm run start -w example",
+    "restart": "rm -rf ./packages/example/src && rm -rf ./packages/example/lib && rm -rf ./packages/graphbase-native/lib && rm -rf ./packages/example/schema.graphql && rm -rf ./packages/example/stucco.json"
   },
   "workspaces": [
     "packages/*"

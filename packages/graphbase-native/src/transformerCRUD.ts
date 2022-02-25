@@ -1,7 +1,7 @@
-import { generateCRUD } from './IO';
 import { TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 import { generateModel } from './generateModel';
+import { fieldNamesArray } from './fieldNames';
 
 export const transformerCRUD: TransformerDef = {
     transformer: ({ field, operations }) => {
@@ -16,8 +16,7 @@ export const transformerCRUD: TransformerDef = {
         }
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
         generateModel(typedFields, field.name);
-        generateCRUD(field.name);
-
+        fieldNamesArray.push(field.name);
         return `
         input Create${field.name}{
             ${typedFields}
