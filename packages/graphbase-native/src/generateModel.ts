@@ -24,6 +24,8 @@ export const generateModel = (typedFields: string, nameField: string) => {
     modelDetailsObject['_id'] = 'string';
     const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
     const detailsModel = `export type ${nameField}ModelDetails = ` + newStrigify(modelDetailsObject);
+    const modelWithId = `export type ${nameField}ModelWithId = ${nameField}ModelDetails & ${nameField}Model `;
     writeModelToFile(model);
     writeModelToFile(detailsModel);
+    writeModelToFile(modelWithId);
 };

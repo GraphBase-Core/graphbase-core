@@ -15,14 +15,23 @@ input UpdatePerson{
 }
 
 input DetailsPerson{
-	id: String!
+	_id: String!
+}
+
+type PersonWithId{
+	_id: String!
+	firstName: String!
+	lastName: String!
+	age: Int!
+	someFloat: Float
+	someBoolean: Boolean
 }
 
 type PersonQuery{
-	readAll: [Person!]!
+	readAll: [PersonWithId!]!
 	readOne(
 		details: DetailsPerson
-	): Person
+	): PersonWithId
 }
 
 type PersonMutation{
@@ -32,10 +41,10 @@ type PersonMutation{
 	update(
 		person: UpdatePerson
 		details: DetailsPerson
-	): String!
+	): Boolean!
 	delete(
 		details: DetailsPerson
-	): String!
+	): Boolean!
 }
 
 input CreateCar{
@@ -51,14 +60,21 @@ input UpdateCar{
 }
 
 input DetailsCar{
-	id: String!
+	_id: String!
+}
+
+type CarWithId{
+	_id: String!
+	mark: String!
+	price: Float!
+	model: String
 }
 
 type CarQuery{
-	readAll: [Car!]!
+	readAll: [CarWithId!]!
 	readOne(
 		details: DetailsCar
-	): Car
+	): CarWithId
 }
 
 type CarMutation{
@@ -68,10 +84,10 @@ type CarMutation{
 	update(
 		car: UpdateCar
 		details: DetailsCar
-	): String!
+	): Boolean!
 	delete(
 		details: DetailsCar
-	): String!
+	): Boolean!
 }
 
 directive @model on OBJECT

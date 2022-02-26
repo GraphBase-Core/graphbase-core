@@ -4,7 +4,7 @@ import { Db } from 'mongodb';
 
 export interface Config {
     db?: Db;
-    handlerFactory: (db: Db) => (input: FieldResolveInput) => unknown;
+    handlerFactory: (db: Db) => (input: any) => unknown;
 }
 
 export const makeHandler = ({ handlerFactory, ...config }: Config) => {

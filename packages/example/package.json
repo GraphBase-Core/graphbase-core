@@ -12,7 +12,8 @@
     "gen": "graphbase-native",
     "start": "npm run gen && npm run build && stucco",
     "lint": "eslint 'src/**/*.{js,ts}' --quiet --fix",
-    "build": "tsc --build tsconfig.json"
+    "build": "tsc --build tsconfig.json",
+    "stucco": "stucco"
   },
   "devDependencies": {
     "typescript": "^4.5.5"
