@@ -1,6 +1,7 @@
-import { generateModel } from './generateModel';
 import { TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
+import { generateModel } from './generateModel';
+import { fieldNamesArray } from './fieldNames';
 
 export const transformerCRUD: TransformerDef = {
     transformer: ({ field, operations }) => {
@@ -15,7 +16,7 @@ export const transformerCRUD: TransformerDef = {
         }
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
         generateModel(typedFields, field.name);
-
+        fieldNamesArray.push(field.name);
         return `
         input Create${field.name}{
             ${typedFields}
@@ -27,15 +28,15 @@ export const transformerCRUD: TransformerDef = {
             id: String!
         }
         type ${field.name}Query{
-            list: [${field.name}!]!
-            getByDetails(details: Details${field.name}): ${field.name}
+            readAll: [${field.name}!]!
+            readOne(details: Details${field.name}): ${field.name}
         }
         type ${field.name}Mutation{
             create( ${field.name[0].toLowerCase() + field.name.slice(1)}: Create${field.name} ): String!
             update( ${field.name[0].toLowerCase() + field.name.slice(1)}: Update${field.name}, details: Details${
             field.name
         } ): String!
-            remove( details: Details${field.name} ): String!
+            delete( details: Details${field.name} ): String!
         }
         extend type ${operations.query.name}{
             ${field.name[0].toLowerCase() + field.name.slice(1)}: ${field.name}Query

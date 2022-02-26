@@ -1,0 +1,107 @@
+input CreatePerson{
+	firstName: String!
+	lastName: String!
+	age: Int!
+	someFloat: Float
+	someBoolean: Boolean
+}
+
+input UpdatePerson{
+	firstName: String!
+	lastName: String!
+	age: Int!
+	someFloat: Float
+	someBoolean: Boolean
+}
+
+input DetailsPerson{
+	id: String!
+}
+
+type PersonQuery{
+	readAll: [Person!]!
+	readOne(
+		details: DetailsPerson
+	): Person
+}
+
+type PersonMutation{
+	create(
+		person: CreatePerson
+	): String!
+	update(
+		person: UpdatePerson
+		details: DetailsPerson
+	): String!
+	delete(
+		details: DetailsPerson
+	): String!
+}
+
+input CreateCar{
+	mark: String!
+	price: Float!
+	model: String
+}
+
+input UpdateCar{
+	mark: String!
+	price: Float!
+	model: String
+}
+
+input DetailsCar{
+	id: String!
+}
+
+type CarQuery{
+	readAll: [Car!]!
+	readOne(
+		details: DetailsCar
+	): Car
+}
+
+type CarMutation{
+	create(
+		car: CreateCar
+	): String!
+	update(
+		car: UpdateCar
+		details: DetailsCar
+	): String!
+	delete(
+		details: DetailsCar
+	): String!
+}
+
+directive @model on OBJECT
+
+type Person @model{
+	firstName: String!
+	lastName: String!
+	age: Int!
+	someFloat: Float
+	someBoolean: Boolean
+}
+
+type Car @model{
+	mark: String!
+	price: Float!
+	model: String
+}
+
+type Query{
+	version: String
+	person: PersonQuery
+	car: CarQuery
+}
+
+type Mutation{
+	version: String
+	person: PersonMutation
+	car: CarMutation
+}
+schema{
+	query: Query,
+	mutation: Mutation
+}

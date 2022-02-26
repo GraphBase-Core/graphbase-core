@@ -1,24 +1,13 @@
 {
-    "scripts": {
-        "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
-        "build": "tsc --build tsconfig.json",
-        "start": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js"
-    },
-    "devDependencies": {
-        "typescript": "^4.5.5"
-    },
-    "dependencies": {
-        "@types/node": "^17.0.19",
-        "@typescript-eslint/eslint-plugin": "^5.12.0",
-        "@typescript-eslint/parser": "^5.12.0",
-        "eslint": "^8.9.0",
-        "eslint-config-prettier": "^8.4.0",
-        "eslint-plugin-prettier": "^4.0.0",
-        "graphql-js-tree": "^0.1.1",
-        "mongodb": "^4.4.0",
-        "node": "^17.4.0",
-        "nodemon": "^2.0.15",
-        "prettier": "^2.5.1",
-        "transform-graphql": "^0.0.4"
-    }
+  "name": "graphbase-native-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start:example": "npm run build -w graphbase-native && npm run start -w example",
+    "restart": "rm -rf ./packages/example/src && rm -rf ./packages/example/lib && rm -rf ./packages/graphbase-native/lib && rm -rf ./packages/example/schema.graphql && rm -rf ./packages/example/stucco.json"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
