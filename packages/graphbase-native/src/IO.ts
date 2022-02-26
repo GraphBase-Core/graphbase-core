@@ -81,6 +81,5 @@ export const generateStucco = (fieldNameArray: string[], { stuccoConfig = './stu
     }
 }
 `;
-
     fs.writeFile(stuccoConfig, data, fileCallback);
 };
