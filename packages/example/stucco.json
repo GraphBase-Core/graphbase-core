@@ -1,6 +1,37 @@
 {
 "resolvers": {
-    "Mutation.person": {
+    "Mutation.interests": {
+        "skip": true
+            },
+        "Query.interests": {
+        "skip": true
+            },
+        "InterestsMutation.create": {
+        "resolve": {
+            "name": "lib/stucco/Interests/create"
+            }
+        },
+        "InterestsMutation.update": {
+            "resolve": {
+                "name": "lib/stucco/Interests/update"
+                }
+            },
+        "InterestsMutation.delete": {
+            "resolve": {
+                "name": "lib/stucco/Interests/delete"
+                }
+             },
+        "InterestsQuery.readAll": {
+            "resolve": {
+                "name": "lib/stucco/Interests/readAll"
+                }
+            },
+        "InterestsQuery.readOne": {
+            "resolve": {
+                "name": "lib/stucco/Interests/readOne"
+                }
+            }
+            ,"Mutation.person": {
         "skip": true
             },
         "Query.person": {

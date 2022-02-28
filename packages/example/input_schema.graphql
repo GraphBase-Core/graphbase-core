@@ -1,11 +1,17 @@
 directive @model on OBJECT
 
+type Interests @model {
+  name: String!
+  description: String
+}
+
 type Person @model {
   firstName: String!
   lastName: String!
   age: Int!
   someFloat: Float
   someBoolean: Boolean
+  interests: [Interests!]
 }
 
 type Car @model {

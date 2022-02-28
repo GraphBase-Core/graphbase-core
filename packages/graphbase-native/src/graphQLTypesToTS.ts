@@ -1,6 +1,9 @@
 export const graphQLTypesToTS = (graphQLType: string) => {
-    const isRequired = graphQLType.includes('!');
+    const isRequired = new RegExp(/!$/).test(graphQLType);
     const justType = graphQLType.replace('!', '').trim();
+    console.log('=======', justType);
+    console.log(isRequired);
+
     let typescriptType;
     switch (justType) {
         case 'String':
@@ -13,6 +16,9 @@ export const graphQLTypesToTS = (graphQLType: string) => {
             break;
         case 'Boolean':
             typescriptType = 'boolean';
+            break;
+        default:
+            typescriptType = `${justType.slice(0, -1)}Model]`;
             break;
     }
     if (!isRequired) {
