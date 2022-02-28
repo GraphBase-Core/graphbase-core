@@ -1,4 +1,3 @@
-import { test } from './mongoUrl';
 import { MongoClient, Db } from 'mongodb';
 
 type mongoConnectionType =
@@ -8,13 +7,13 @@ type mongoConnectionType =
       }
     | undefined;
 
-const client = new MongoClient(test || 'mongodb://localhost:27017');
+const client = new MongoClient(process.env.DATABASE_URL || 'mongodb://localhost:27017');
+
 let mongoConnection: mongoConnectionType = undefined;
 
 export const mc = async () => {
     if (mongoConnection) return mongoConnection;
-
-    if (!test) {
+    if (!process.env.DATABASE_URL) {
         throw new Error('Please provide database url in your environment settings');
     }
     const conn = await client.connect();

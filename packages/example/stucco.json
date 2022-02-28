@@ -2,66 +2,66 @@
 "resolvers": {
     "Mutation.person": {
         "skip": true
-        },
+            },
         "Query.person": {
-            "skip": true
-        },
+        "skip": true
+            },
         "PersonMutation.create": {
-            "resolve": {
-                "name": "lib/stucco/Person/create"
+        "resolve": {
+            "name": "lib/stucco/Person/create"
             }
         },
         "PersonMutation.update": {
             "resolve": {
                 "name": "lib/stucco/Person/update"
-            }
-        },
+                }
+            },
         "PersonMutation.delete": {
             "resolve": {
                 "name": "lib/stucco/Person/delete"
-            }
-        },
+                }
+             },
         "PersonQuery.readAll": {
             "resolve": {
                 "name": "lib/stucco/Person/readAll"
-            }
-        },
+                }
+            },
         "PersonQuery.readOne": {
             "resolve": {
                 "name": "lib/stucco/Person/readOne"
+                }
             }
-        }
-  ,  "Mutation.car": {
+            ,"Mutation.car": {
         "skip": true
-        },
+            },
         "Query.car": {
-            "skip": true
-        },
+        "skip": true
+            },
         "CarMutation.create": {
-            "resolve": {
-                "name": "lib/stucco/Car/create"
+        "resolve": {
+            "name": "lib/stucco/Car/create"
             }
         },
         "CarMutation.update": {
             "resolve": {
                 "name": "lib/stucco/Car/update"
-            }
-        },
+                }
+            },
         "CarMutation.delete": {
             "resolve": {
                 "name": "lib/stucco/Car/delete"
-            }
-        },
+                }
+             },
         "CarQuery.readAll": {
             "resolve": {
                 "name": "lib/stucco/Car/readAll"
-            }
-        },
+                }
+            },
         "CarQuery.readOne": {
             "resolve": {
                 "name": "lib/stucco/Car/readOne"
+                }
             }
-        }
-  
-    }
+            
+}
 }
