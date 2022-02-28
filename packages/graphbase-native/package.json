@@ -39,7 +39,7 @@
     "node": "^17.4.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
-    "transform-graphql": "^0.0.4",
-    "stucco-js": "^0.9.10"
+    "stucco-js": "^0.9.10",
+    "transform-graphql": "^0.0.4"
   }
 }

@@ -10,7 +10,7 @@
   "homepage": "https://github.com/GraphBase-Native/graphbase-native#readme",
   "scripts": {
     "gen": "graphbase-native",
-    "start": "npm run gen && npm run build && stucco",
+    "start": "npm run gen && npm run build && dotenv -e .env stucco",
     "lint": "eslint 'src/**/*.{js,ts}' --quiet --fix",
     "build": "tsc --build tsconfig.json",
     "stucco": "stucco"
@@ -19,6 +19,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
+    "dotenv-cli": "^5.0.0",
     "stucco-js": "^0.9.10"
   }
 }

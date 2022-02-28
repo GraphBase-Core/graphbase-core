@@ -1,3 +1,4 @@
+import { generateStuccoJSON } from './fileContent/stucco';
 import fs from 'fs';
 import { fillCreateFile, fillDeleteFile, fillUpdateFile, fillReadAllFile, fillReadOneFile } from './fileContent/index';
 
@@ -42,44 +43,5 @@ export const generateCRUD = (fieldNameArray: string[], { stuccoJson = './src/stu
 };
 
 export const generateStucco = (fieldNameArray: string[], { stuccoConfig = './stucco.json' }: Options = {}) => {
-    const data = `{
-"resolvers": {
-  ${fieldNameArray.map(
-      (fieldName) => `  "Mutation.${fieldName.toLowerCase()}": {
-        "skip": true
-        },
-        "Query.${fieldName.toLowerCase()}": {
-            "skip": true
-        },
-        "${fieldName}Mutation.create": {
-            "resolve": {
-                "name": "lib/stucco/${fieldName}/create"
-            }
-        },
-        "${fieldName}Mutation.update": {
-            "resolve": {
-                "name": "lib/stucco/${fieldName}/update"
-            }
-        },
-        "${fieldName}Mutation.delete": {
-            "resolve": {
-                "name": "lib/stucco/${fieldName}/delete"
-            }
-        },
-        "${fieldName}Query.readAll": {
-            "resolve": {
-                "name": "lib/stucco/${fieldName}/readAll"
-            }
-        },
-        "${fieldName}Query.readOne": {
-            "resolve": {
-                "name": "lib/stucco/${fieldName}/readOne"
-            }
-        }
-  `,
-  )}
-    }
-}
-`;
-    fs.writeFile(stuccoConfig, data, fileCallback);
+    fs.writeFile(stuccoConfig, generateStuccoJSON(fieldNameArray), fileCallback);
 };
