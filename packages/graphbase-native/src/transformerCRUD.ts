@@ -1,7 +1,23 @@
-import { TreeToGraphQL } from 'graphql-js-tree';
+import { FieldType, Options, TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 import { generateModel } from './generateModel';
-import { fieldNamesArray } from './fieldNames';
+
+export const getTypeName = (f: FieldType): string => {
+    if (f.type === Options.name) {
+        return f.name;
+    }
+    return getTypeName(f.nest);
+};
+
+export const compileType = (f: FieldType, fn: (x: string) => string = (x) => x): string => {
+    if (f.type === Options.name) {
+        return fn(f.name);
+    } else if (f.type === Options.array) {
+        return compileType(f.nest, (x) => `[${fn(x)}]`);
+    } else {
+        return compileType(f.nest, (x) => `${fn(x)}!`);
+    }
+};
 
 export const transformerCRUD: TransformerDef = {
     transformer: ({ field, operations }) => {
@@ -16,7 +32,6 @@ export const transformerCRUD: TransformerDef = {
         }
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
         generateModel(typedFields, field.name);
-        fieldNamesArray.push(field.name);
         return `
         input Create${field.name}{
             ${typedFields}

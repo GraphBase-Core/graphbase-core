@@ -2,15 +2,15 @@
 import { TransformGraphQLSchema } from 'transform-graphql';
 import { readSchemaFromFiles, writeSchemaToFile, generateCRUD, generateStucco } from './IO';
 import { transformerCRUD } from './transformerCRUD';
-import { fieldNamesArray } from './fieldNames';
+import { fieldsArray } from './fieldsArray';
 
 const transformedSchema = TransformGraphQLSchema({
     schema: readSchemaFromFiles(),
     transformers: [transformerCRUD],
 });
 writeSchemaToFile(transformedSchema);
-generateCRUD(fieldNamesArray);
-generateStucco(fieldNamesArray);
+generateCRUD(fieldsArray);
+generateStucco(fieldsArray);
 
 export { mc } from './db/mongoDB/connection';
 export { FieldResolveInput, FieldResolveOutput } from 'stucco-js';

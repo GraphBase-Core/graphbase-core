@@ -1,3 +1,4 @@
+import { FieldType } from './fieldsArray';
 import { generateStuccoJSON } from './fileContent/stucco';
 import fs from 'fs';
 import { fillCreateFile, fillDeleteFile, fillUpdateFile, fillReadAllFile, fillReadOneFile } from './fileContent/index';
@@ -30,18 +31,31 @@ export const writeModelToFile = (model: string, { generatedDir = './src/generate
     fs.appendFile(outputDir, model + '\n', fileCallback);
 };
 
-export const generateCRUD = (fieldNameArray: string[], { stuccoJson = './src/stucco' }: Options = {}) => {
-    fieldNameArray.map((fieldName) => {
-        const outputDir = `${stuccoJson}/${fieldName}`;
+const a = `import { FieldResolveInput } from 'stucco-js';
+export const handler = (input: FieldResolveInput) => {
+  console.log(input.source);
+};
+`;
+
+export const generateCRUD = (fieldTypeArray: FieldType[], { stuccoJson = './src/stucco' }: Options = {}) => {
+    fieldTypeArray.map((fieldType) => {
+        const outputDir = `${stuccoJson}/${fieldType.field_name}`;
         fs.mkdirSync(`${outputDir}`, { recursive: true });
-        fs.writeFile(`${outputDir}/create.ts`, fillCreateFile(fieldName), fileCallback);
-        fs.writeFile(`${outputDir}/update.ts`, fillUpdateFile(fieldName), fileCallback);
-        fs.writeFile(`${outputDir}/delete.ts`, fillDeleteFile(fieldName), fileCallback);
-        fs.writeFile(`${outputDir}/readAll.ts`, fillReadAllFile(fieldName), fileCallback);
-        fs.writeFile(`${outputDir}/readOne.ts`, fillReadOneFile(fieldName), fileCallback);
+        fs.writeFile(`${outputDir}/create.ts`, fillCreateFile(fieldType.field_name), fileCallback);
+        fs.writeFile(`${outputDir}/update.ts`, fillUpdateFile(fieldType.field_name), fileCallback);
+        fs.writeFile(`${outputDir}/delete.ts`, fillDeleteFile(fieldType.field_name), fileCallback);
+        fs.writeFile(`${outputDir}/readAll.ts`, fillReadAllFile(fieldType.field_name), fileCallback);
+        fs.writeFile(`${outputDir}/readOne.ts`, fillReadOneFile(fieldType.field_name), fileCallback);
+        fieldType.relations.map((rel) => {
+            if (rel.type === 'MANY') {
+                fs.writeFile(`${outputDir}/${rel.relation_name}.ts`, a, fileCallback);
+            } else if (rel.type === 'SINGLE') {
+                fs.writeFile(`${outputDir}/${rel.relation_name}.ts`, a, fileCallback);
+            }
+        });
     });
 };
 
-export const generateStucco = (fieldNameArray: string[], { stuccoConfig = './stucco.json' }: Options = {}) => {
+export const generateStucco = (fieldNameArray: FieldType[], { stuccoConfig = './stucco.json' }: Options = {}) => {
     fs.writeFile(stuccoConfig, generateStuccoJSON(fieldNameArray), fileCallback);
 };

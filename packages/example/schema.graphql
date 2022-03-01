@@ -94,12 +94,14 @@ input CreateCar{
 	mark: String!
 	price: Float!
 	model: String
+	interests: Interests
 }
 
 input UpdateCar{
 	mark: String!
 	price: Float!
 	model: String
+	interests: Interests
 }
 
 input DetailsCar{
@@ -111,6 +113,7 @@ type CarWithId{
 	mark: String!
 	price: Float!
 	model: String
+	interests: Interests
 }
 
 type CarQuery{
@@ -153,6 +156,7 @@ type Car @model{
 	mark: String!
 	price: Float!
 	model: String
+	interests: Interests
 }
 
 type Query{

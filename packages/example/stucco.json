@@ -31,6 +31,7 @@
                 "name": "lib/stucco/Interests/readOne"
                 }
             }
+        
             ,"Mutation.person": {
         "skip": true
             },
@@ -62,6 +63,12 @@
                 "name": "lib/stucco/Person/readOne"
                 }
             }
+        ,"Person.interests": {
+                "resolve": {
+                    "name": "lib/stucco/Person/Interests"
+                }
+            }
+        
             ,"Mutation.car": {
         "skip": true
             },
@@ -93,6 +100,12 @@
                 "name": "lib/stucco/Car/readOne"
                 }
             }
+        ,"Car.interests": {
+                "resolve": {
+                    "name": "lib/stucco/Car/Interests"
+                }
+            }
+        
             
 }
 }
