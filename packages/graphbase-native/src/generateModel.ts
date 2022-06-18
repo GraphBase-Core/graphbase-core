@@ -1,8 +1,6 @@
 import { writeModelToFile } from './IO';
 import { graphQLTypesToTS } from './graphQLTypesToTS';
-interface LooseObject {
-    [key: string]: any;
-}
+
 type StructuredData = {
     [x: string]: string | StructuredData;
 };
@@ -15,12 +13,12 @@ const newStrigify = (x: StructuredData): string => {
 
 export const generateModel = (typedFields: string, nameField: string) => {
     const arrayWithTypes = typedFields.split(/(\r\n|\n|\r)/gm).filter((i) => i !== '\n' && i !== '');
-    const modelObject: LooseObject = {};
+    const modelObject: Record<string, any> = {};
     arrayWithTypes.map((i) => {
         const fieldTuple = i.split(':');
         modelObject[fieldTuple[0]] = graphQLTypesToTS(fieldTuple[1]);
     });
-    const modelDetailsObject: LooseObject = {};
+    const modelDetailsObject: Record<string, any> = {};
     modelDetailsObject['_id'] = 'string';
     const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
     const detailsModel = `export type ${nameField}ModelDetails = ` + newStrigify(modelDetailsObject);
