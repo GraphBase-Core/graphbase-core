@@ -1,45 +1,46 @@
 {
-  "name": "graphbase-native",
-  "version": "1.0.0",
-  "description": "",
-  "main": "lib/app.js",
-  "bin": {
-    "graphbase-native": "lib/app.js"
-  },
-  "types": "lib/app.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GraphBase-Native/graphbase-native.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GraphBase-Native/graphbase-native/issues"
-  },
-  "homepage": "https://github.com/GraphBase-Native/graphbase-native#readme",
-  "scripts": {
-    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
-    "build": "tsc --build tsconfig.json && chmod +x lib/app.js",
-    "start": "node graphbase-native/lib/app.js",
-    "stucco": "stucco",
-    "dev": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js"
-  },
-  "devDependencies": {
-    "typescript": "^4.5.5"
-  },
-  "dependencies": {
-    "@types/node": "^17.0.19",
-    "@typescript-eslint/eslint-plugin": "^5.12.0",
-    "@typescript-eslint/parser": "^5.12.0",
-    "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.4.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "graphql-js-tree": "^0.1.1",
-    "mongodb": "^4.4.0",
-    "node": "^17.4.0",
-    "nodemon": "^2.0.15",
-    "prettier": "^2.5.1",
-    "stucco-js": "^0.9.10",
-    "transform-graphql": "^0.0.4"
-  }
+    "name": "graphbase-native",
+    "version": "1.0.0",
+    "description": "",
+    "main": "lib/app.js",
+    "bin": {
+        "graphbase-native": "lib/app.js"
+    },
+    "types": "lib/app.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GraphBase-Native/graphbase-native.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/GraphBase-Native/graphbase-native/issues"
+    },
+    "homepage": "https://github.com/GraphBase-Native/graphbase-native#readme",
+    "scripts": {
+        "lint": "eslint '/**/.{js,ts}' --quiet --fix",
+        "build": "tsc --build tsconfig.json && chmod +x lib/app.js",
+        "build:windows": "tsc --build tsconfig.json",
+        "start": "node graphbase-native/lib/app.js",
+        "stucco": "stucco",
+        "dev": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js"
+    },
+    "devDependencies": {
+        "typescript": "^4.5.5"
+    },
+    "dependencies": {
+        "@types/node": "^17.0.19",
+        "@typescript-eslint/eslint-plugin": "^5.12.0",
+        "@typescript-eslint/parser": "^5.12.0",
+        "eslint": "^8.9.0",
+        "eslint-config-prettier": "^8.4.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "graphql-js-tree": "^0.1.1",
+        "mongodb": "^4.4.0",
+        "node": "^17.4.0",
+        "nodemon": "^2.0.15",
+        "prettier": "^2.5.1",
+        "stucco-js": "^0.9.10",
+        "transform-graphql": "^0.0.4"
+    }
 }

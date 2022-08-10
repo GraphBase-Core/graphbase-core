@@ -1,10 +1,6 @@
 import { writeModelToFile } from './IO';
-import { getTypesAndRelations } from './getTypesAndRelations';
-import { fieldsArray, Relation } from './fieldsArray';
+import { graphQLTypesToTS } from './graphQLTypesToTS';
 
-interface LooseObject {
-    [key: string]: any;
-}
 type StructuredData = {
     [x: string]: string | StructuredData;
 };
@@ -17,20 +13,13 @@ const newStrigify = (x: StructuredData): string => {
 
 export const generateModel = (typedFields: string, nameField: string) => {
     const arrayWithTypes = typedFields.split(/(\r\n|\n|\r)/gm).filter((i) => i !== '\n' && i !== '');
-    const modelDetailsObject: LooseObject = {};
-    modelDetailsObject['_id'] = 'string';
-    const modelObject: LooseObject = {};
-    const modelRelations: Relation[] = [];
+    const modelObject: Record<string, any> = {};
     arrayWithTypes.map((i) => {
         const fieldTuple = i.split(':');
-        const typesAndRelations = getTypesAndRelations(fieldTuple[1]);
-        modelObject[fieldTuple[0]] = typesAndRelations.fildType;
-        if (typesAndRelations.relationType) {
-            modelRelations.push(typesAndRelations.relationType);
-        }
+        modelObject[fieldTuple[0]] = graphQLTypesToTS(fieldTuple[1]);
     });
-    fieldsArray.push({ field_name: nameField, relations: modelRelations });
-
+    const modelDetailsObject: Record<string, any> = {};
+    modelDetailsObject['_id'] = 'string';
     const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
     const detailsModel = `export type ${nameField}ModelDetails = ` + newStrigify(modelDetailsObject);
     const modelWithId = `export type ${nameField}ModelWithId = ${nameField}ModelDetails & ${nameField}Model`;
