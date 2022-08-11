@@ -1,5 +1,5 @@
 import { writeModelToFile } from './IO';
-import { graphQLTypesToTS } from './graphQLTypesToTS';
+import { getTypesAndRelations } from './getTypesAndRelations';
 
 type StructuredData = {
     [x: string]: string | StructuredData;
@@ -16,7 +16,7 @@ export const generateModel = (typedFields: string, nameField: string) => {
     const modelObject: Record<string, any> = {};
     arrayWithTypes.map((i) => {
         const fieldTuple = i.split(':');
-        modelObject[fieldTuple[0]] = graphQLTypesToTS(fieldTuple[1]);
+        modelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1]);
     });
     const modelDetailsObject: Record<string, any> = {};
     modelDetailsObject['_id'] = 'string';

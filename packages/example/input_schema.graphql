@@ -18,7 +18,6 @@ type Car @model {
   mark: String!
   price: Float!
   model: String
-  interests: Interests
 }
 
 type Query {

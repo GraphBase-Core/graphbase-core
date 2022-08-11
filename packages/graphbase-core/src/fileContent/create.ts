@@ -2,7 +2,7 @@ export const fillCreateFile = (fildName: string) =>
     `/* DO NOT EDIT - generated */
 import { ${fildName}Model } from '../../generated/model';
 import { Db } from 'mongodb';
-import { makeHandler, FieldResolveInput } from 'graphbase-native';
+import { makeHandler, FieldResolveInput } from 'graphbase-core';
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
   arguments: { ${fildName.toLowerCase()}: ${fildName}Model  };

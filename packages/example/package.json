@@ -5,11 +5,11 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GraphBase-Native/graphbase-native/issues"
+    "url": "https://github.com/GraphBase-Core/graphbase-core/issues"
   },
-  "homepage": "https://github.com/GraphBase-Native/graphbase-native#readme",
+  "homepage": "https://github.com/GraphBase-Core/graphbase-core#readme",
   "scripts": {
-    "gen": "graphbase-native",
+    "gen": "graphbase-core",
     "start": "npm run gen && npm run build && dotenv -e .env stucco",
     "lint": "eslint 'src/**/*.{js,ts}' --quiet --fix",
     "build": "tsc --build tsconfig.json",

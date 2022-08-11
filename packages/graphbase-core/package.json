@@ -1,27 +1,27 @@
 {
-    "name": "graphbase-native",
+    "name": "graphbase-core",
     "version": "1.0.0",
     "description": "",
     "main": "lib/app.js",
     "bin": {
-        "graphbase-native": "lib/app.js"
+        "graphbase-core": "lib/app.js"
     },
     "types": "lib/app.d.ts",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/GraphBase-Native/graphbase-native.git"
+        "url": "git+https://github.com/GraphBase-Core/graphbase-core.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/GraphBase-Native/graphbase-native/issues"
+        "url": "https://github.com/GraphBase-Core/graphbase-core/issues"
     },
-    "homepage": "https://github.com/GraphBase-Native/graphbase-native#readme",
+    "homepage": "https://github.com/GraphBase-Core/graphbase-core#readme",
     "scripts": {
         "lint": "eslint '/**/.{js,ts}' --quiet --fix",
         "build": "tsc --build tsconfig.json && chmod +x lib/app.js",
         "build:windows": "tsc --build tsconfig.json",
-        "start": "node graphbase-native/lib/app.js",
+        "start": "node graphbase-core/lib/app.js",
         "stucco": "stucco",
         "dev": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js"
     },
@@ -35,6 +35,7 @@
         "eslint": "^8.9.0",
         "eslint-config-prettier": "^8.4.0",
         "eslint-plugin-prettier": "^4.0.0",
+        "graphbase-core": "^1.0.0",
         "graphql-js-tree": "^0.1.1",
         "mongodb": "^4.4.0",
         "node": "^17.4.0",

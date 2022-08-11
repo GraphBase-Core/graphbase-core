@@ -15,3 +15,5 @@ generateStucco(fieldsArray);
 export { mc } from './db/mongoDB/connection';
 export { FieldResolveInput, FieldResolveOutput } from 'stucco-js';
 export { makeHandler } from './makeHandler';
+//relation inputs generate as type no like input
+//implenet resolvers

@@ -1,1 +1,1 @@
-# graphbase-native
+# graphbase-core
