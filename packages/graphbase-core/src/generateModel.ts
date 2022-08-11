@@ -18,6 +18,8 @@ export const generateModel = (typedFields: string, nameField: string) => {
         const fieldTuple = i.split(':');
         modelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1]);
     });
+    console.log('modelObject', modelObject);
+
     const modelDetailsObject: Record<string, any> = {};
     modelDetailsObject['_id'] = 'string';
     const model = `export type ${nameField}Model = ` + newStrigify(modelObject);

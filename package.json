@@ -7,7 +7,7 @@
     "example": "npm run build -w graphbase-core && npm run start -w example",
     "example:windows": "npm run build:windows -w graphbase-core && npm run start -w example",
     "restart": "rm -rf ./packages/example/src && rm -rf ./packages/example/lib && rm -rf ./packages/graphbase-core/lib && rm -rf ./packages/example/schema.graphql && rm -rf ./packages/example/stucco.json",
-    "restart:windows": "del \f .\\packages\\example\\src && del \f.\\packages\\example\\lib\\* && del \f .\\packages\\graphbase-core\\lib\\* && del \f .\\packages\\example\\schema.graphql && del \f .\\packages\\example\\stucco.json",
+    "restart:windows": "del .\\packages\\example\\src && del .\\packages\\example\\lib && del  .\\packages\\graphbase-core\\lib && del  .\\packages\\example\\schema.graphql && del  .\\packages\\example\\stucco.json",
     "stucco": "npm run stucco -w example"
   },
   "workspaces": [

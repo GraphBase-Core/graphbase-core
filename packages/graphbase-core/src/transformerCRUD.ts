@@ -30,6 +30,7 @@ export const transformerCRUD: TransformerDef = {
         if (!operations.mutation) {
             throw new Error('Query type required');
         }
+
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
         generateModel(typedFields, field.name);
         return `
