@@ -5,9 +5,9 @@ export type Relation = {
     type: RelationType;
 };
 
-export type FieldType = {
+export type Field = {
     field_name: string;
-    relations: Relation[];
+    relations?: Relation[];
 };
 
-export const fieldsArray: FieldType[] = [];
+export const fieldsArray: Field[] = [];

@@ -1,7 +1,15 @@
-import { FieldType } from './fieldsArray';
+import { Field } from './fieldsArray';
 import { generateStuccoJSON } from './fileContent/stucco';
 import fs from 'fs';
-import { fillCreateFile, fillDeleteFile, fillUpdateFile, fillReadAllFile, fillReadOneFile } from './fileContent/index';
+import {
+    fillCreateFile,
+    fillDeleteFile,
+    fillUpdateFile,
+    fillReadAllFile,
+    fillReadOneFile,
+    fillSingleRelation,
+    fillMultipleRelation,
+} from './fileContent/index';
 
 const fileCallback = (err: NodeJS.ErrnoException | null) => {
     if (err) {
@@ -31,13 +39,7 @@ export const writeModelToFile = (model: string, { generatedDir = './src/generate
     fs.appendFile(outputDir, model + '\n', fileCallback);
 };
 
-const a = `import { FieldResolveInput } from 'stucco-js';
-export const handler = (input: FieldResolveInput) => {
-  console.log(input.source);
-};
-`;
-
-export const generateCRUD = (fieldTypeArray: FieldType[], { stuccoJson = './src/stucco' }: Options = {}) => {
+export const generateCRUD = (fieldTypeArray: Field[], { stuccoJson = './src/stucco' }: Options = {}) => {
     fieldTypeArray.map((fieldType) => {
         const outputDir = `${stuccoJson}/${fieldType.field_name}`;
         fs.mkdirSync(`${outputDir}`, { recursive: true });
@@ -46,16 +48,19 @@ export const generateCRUD = (fieldTypeArray: FieldType[], { stuccoJson = './src/
         fs.writeFile(`${outputDir}/delete.ts`, fillDeleteFile(fieldType.field_name), fileCallback);
         fs.writeFile(`${outputDir}/readAll.ts`, fillReadAllFile(fieldType.field_name), fileCallback);
         fs.writeFile(`${outputDir}/readOne.ts`, fillReadOneFile(fieldType.field_name), fileCallback);
-        fieldType.relations.map((rel) => {
+
+        // does it make sense that i spread it to diffrent resolvers based on relation
+        // fetch always using find() and return array with length 1 when is single relation?
+        fieldType.relations?.map((rel) => {
             if (rel.type === 'MANY') {
-                fs.writeFile(`${outputDir}/${rel.relation_name}.ts`, a, fileCallback);
+                fs.writeFile(`${outputDir}/${rel.relation_name}.ts`, fillMultipleRelation, fileCallback);
             } else if (rel.type === 'SINGLE') {
-                fs.writeFile(`${outputDir}/${rel.relation_name}.ts`, a, fileCallback);
+                fs.writeFile(`${outputDir}/${rel.relation_name}.ts`, fillSingleRelation, fileCallback);
             }
         });
     });
 };
 
-export const generateStucco = (fieldNameArray: FieldType[], { stuccoConfig = './stucco.json' }: Options = {}) => {
+export const generateStucco = (fieldNameArray: Field[], { stuccoConfig = './stucco.json' }: Options = {}) => {
     fs.writeFile(stuccoConfig, generateStuccoJSON(fieldNameArray), fileCallback);
 };

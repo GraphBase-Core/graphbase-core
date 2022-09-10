@@ -1,6 +1,7 @@
-import { FieldType, Options, TreeToGraphQL } from 'graphql-js-tree';
+import { FieldType, Options, ParserField, TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 import { generateModel } from './generateModel';
+import { fieldsArray, Field } from './fieldsArray';
 
 export const getTypeName = (f: FieldType): string => {
     if (f.type === Options.name) {
@@ -19,6 +20,34 @@ export const compileType = (f: FieldType, fn: (x: string) => string = (x) => x):
     }
 };
 
+export const generateRelations = (field: ParserField): Field => {
+    // console.log(
+    //     'field.args ',
+    //     field.args.map((a) => {
+    //         if (a.type.fieldType.type !== Options.name) {
+    //             console.log(a.type.fieldType.nest);
+    //         } else {
+    //             return {
+    //                 field_name: field.name,
+    //             };
+    //         }
+    //     }),
+    // );
+
+    // field.args.map((a) => {
+    //     if (a.type.fieldType.type !== Options.name) {
+    //         console.log(a.type.fieldType.nest);
+    //         return {
+    //             field_name: field.name,
+    //         };
+    //     }
+
+    // });
+    return {
+        field_name: field.name,
+    };
+};
+
 export const transformerCRUD: TransformerDef = {
     transformer: ({ field, operations }) => {
         if (!field.args) {
@@ -32,6 +61,9 @@ export const transformerCRUD: TransformerDef = {
         }
 
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
+
+        fieldsArray.push(generateRelations(field));
+
         generateModel(typedFields, field.name);
         return `
         input Create${field.name}{

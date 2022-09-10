@@ -1,5 +1,5 @@
-import { FieldType } from 'fieldsArray';
-export const generateStuccoJSON = (fieldTypeArray: FieldType[]) => `{
+import { Field } from 'fieldsArray';
+export const generateStuccoJSON = (fieldTypeArray: Field[]) => `{
 "resolvers": {
     ${fieldTypeArray.map(
         (fieldType) => `"Mutation.${fieldType.field_name.toLowerCase()}": {
@@ -33,7 +33,7 @@ export const generateStuccoJSON = (fieldTypeArray: FieldType[]) => `{
                 "name": "lib/stucco/${fieldType.field_name}/readOne"
                 }
             }
-        ${fieldType.relations.map(
+        ${fieldType.relations?.map(
             (rel) => `,"${fieldType.field_name}.${rel.relation_name.toLowerCase()}": {
                 "resolve": {
                     "name": "lib/stucco/${fieldType.field_name}/${rel.relation_name}"

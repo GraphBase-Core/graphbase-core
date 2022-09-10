@@ -27,7 +27,7 @@ export const getTypesAndRelations = (graphQLType: string) => {
             typescriptType = '[boolean]';
             break;
         default:
-            if (justType.includes('[')) {
+            if (justType.startsWith('[')) {
                 typescriptType = '[string]';
             } else {
                 typescriptType = 'string';

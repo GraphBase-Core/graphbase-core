@@ -8,10 +8,11 @@ const transformedSchema = TransformGraphQLSchema({
     schema: readSchemaFromFiles(),
     transformers: [transformerCRUD],
 });
+
+console.log('fieldsArray', fieldsArray);
+
 writeSchemaToFile(transformedSchema);
 generateCRUD(fieldsArray);
-console.log(fieldsArray);
-
 generateStucco(fieldsArray);
 
 export { mc } from './db/mongoDB/connection';
