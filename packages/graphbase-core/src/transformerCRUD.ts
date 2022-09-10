@@ -61,6 +61,7 @@ export const transformerCRUD: TransformerDef = {
         }
 
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
+        console.log(typedFields);
 
         fieldsArray.push(generateRelations(field));
 

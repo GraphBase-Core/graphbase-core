@@ -1,5 +1,101 @@
 {
 "resolvers": {
-    
+    "Mutation.interests": {
+        "skip": true
+            },
+        "Query.interests": {
+        "skip": true
+            },
+        "InterestsMutation.create": {
+        "resolve": {
+            "name": "lib/stucco/Interests/create"
+            }
+        },
+        "InterestsMutation.update": {
+            "resolve": {
+                "name": "lib/stucco/Interests/update"
+                }
+            },
+        "InterestsMutation.delete": {
+            "resolve": {
+                "name": "lib/stucco/Interests/delete"
+                }
+             },
+        "InterestsQuery.readAll": {
+            "resolve": {
+                "name": "lib/stucco/Interests/readAll"
+                }
+            },
+        "InterestsQuery.readOne": {
+            "resolve": {
+                "name": "lib/stucco/Interests/readOne"
+                }
+            }
+        
+            ,"Mutation.person": {
+        "skip": true
+            },
+        "Query.person": {
+        "skip": true
+            },
+        "PersonMutation.create": {
+        "resolve": {
+            "name": "lib/stucco/Person/create"
+            }
+        },
+        "PersonMutation.update": {
+            "resolve": {
+                "name": "lib/stucco/Person/update"
+                }
+            },
+        "PersonMutation.delete": {
+            "resolve": {
+                "name": "lib/stucco/Person/delete"
+                }
+             },
+        "PersonQuery.readAll": {
+            "resolve": {
+                "name": "lib/stucco/Person/readAll"
+                }
+            },
+        "PersonQuery.readOne": {
+            "resolve": {
+                "name": "lib/stucco/Person/readOne"
+                }
+            }
+        
+            ,"Mutation.car": {
+        "skip": true
+            },
+        "Query.car": {
+        "skip": true
+            },
+        "CarMutation.create": {
+        "resolve": {
+            "name": "lib/stucco/Car/create"
+            }
+        },
+        "CarMutation.update": {
+            "resolve": {
+                "name": "lib/stucco/Car/update"
+                }
+            },
+        "CarMutation.delete": {
+            "resolve": {
+                "name": "lib/stucco/Car/delete"
+                }
+             },
+        "CarQuery.readAll": {
+            "resolve": {
+                "name": "lib/stucco/Car/readAll"
+                }
+            },
+        "CarQuery.readOne": {
+            "resolve": {
+                "name": "lib/stucco/Car/readOne"
+                }
+            }
+        
+            
 }
 }

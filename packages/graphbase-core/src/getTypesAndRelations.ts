@@ -1,7 +1,14 @@
 //TODO: now it doesnt work with [String] field?
 export const getTypesAndRelations = (graphQLType: string) => {
     const isRequired = new RegExp(/!$/).test(graphQLType);
+    const isRequiredArrayElement = new RegExp(/!]/).test(graphQLType);
+
+    console.log(graphQLType);
+    console.log('isRequiredArrayElement', isRequiredArrayElement);
+    console.log('isRequired', isRequired);
+
     const justType = graphQLType.replace(/!$/g, '').trim();
+
     let typescriptType;
     switch (justType) {
         case 'String':
@@ -28,9 +35,9 @@ export const getTypesAndRelations = (graphQLType: string) => {
             break;
         default:
             if (justType.startsWith('[')) {
-                typescriptType = '[string]';
+                typescriptType = `[${justType.replace(/[\[\]]/g, '')}ModelWithId]`;
             } else {
-                typescriptType = 'string';
+                typescriptType = `${justType}ModelWithId`;
             }
     }
     if (!isRequired) {

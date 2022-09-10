@@ -33,14 +33,18 @@ export const generateStuccoJSON = (fieldTypeArray: Field[]) => `{
                 "name": "lib/stucco/${fieldType.field_name}/readOne"
                 }
             }
-        ${fieldType.relations?.map(
-            (rel) => `,"${fieldType.field_name}.${rel.relation_name.toLowerCase()}": {
+        ${
+            fieldType.relations?.length
+                ? fieldType.relations.map(
+                      (rel) => `,"${fieldType.field_name}.${rel.relation_name.toLowerCase()}": {
                 "resolve": {
                     "name": "lib/stucco/${fieldType.field_name}/${rel.relation_name}"
                 }
             }
         `,
-        )}
+                  )
+                : ''
+        }
             `,
     )}
 }
