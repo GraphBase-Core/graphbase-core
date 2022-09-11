@@ -1,7 +1,17 @@
-import { FieldType, Options, ParserField, TreeToGraphQL } from 'graphql-js-tree';
+import { FieldType, Options, TreeToGraphQL, ScalarTypes } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 import { generateModel } from './generateModel';
-import { fieldsArray, Field } from './fieldsArray';
+import { fieldsArray } from './fieldsArray';
+
+const scalarTypes: string[] = [
+    ScalarTypes.String,
+    ScalarTypes.Boolean,
+    ScalarTypes.Float,
+    ScalarTypes.ID,
+    ScalarTypes.Int,
+];
+
+type Mode = 'CREATE' | 'UPDATE';
 
 export const getTypeName = (f: FieldType): string => {
     if (f.type === Options.name) {
@@ -20,32 +30,23 @@ export const compileType = (f: FieldType, fn: (x: string) => string = (x) => x):
     }
 };
 
-export const generateRelations = (field: ParserField): Field => {
-    // console.log(
-    //     'field.args ',
-    //     field.args.map((a) => {
-    //         if (a.type.fieldType.type !== Options.name) {
-    //             console.log(a.type.fieldType.nest);
-    //         } else {
-    //             return {
-    //                 field_name: field.name,
-    //             };
-    //         }
-    //     }),
-    // );
+export const getNotScalarTypes = (typedFields: string) =>
+    typedFields
+        .split(`\n`)
+        .filter((a) => a !== '')
+        .map((b) =>
+            b
+                .split(':')[1]
+                .trim()
+                .replace(/[\[\]\!]/g, ''),
+        )
+        .filter((c) => !scalarTypes.includes(c));
 
-    // field.args.map((a) => {
-    //     if (a.type.fieldType.type !== Options.name) {
-    //         console.log(a.type.fieldType.nest);
-    //         return {
-    //             field_name: field.name,
-    //         };
-    //     }
-
-    // });
-    return {
-        field_name: field.name,
-    };
+export const typeToInput = (notScalarTypes: string[], typedFields: string, mode: Mode) => {
+    mode === 'CREATE'
+        ? notScalarTypes.forEach((nsc) => (typedFields = typedFields.replace(nsc, `Create${nsc}`)))
+        : notScalarTypes.forEach((nsc) => (typedFields = typedFields.replace(nsc, `Update${nsc}`)));
+    return typedFields;
 };
 
 export const transformerCRUD: TransformerDef = {
@@ -61,17 +62,18 @@ export const transformerCRUD: TransformerDef = {
         }
 
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
-        console.log(typedFields);
-
-        fieldsArray.push(generateRelations(field));
+        const notScalarTypes = getNotScalarTypes(typedFields);
+        fieldsArray.push({
+            field_name: field.name,
+        });
 
         generateModel(typedFields, field.name);
         return `
         input Create${field.name}{
-            ${typedFields}
+            ${notScalarTypes.length ? typeToInput(notScalarTypes, typedFields, 'CREATE') : typedFields}
         }
         input Update${field.name}{
-            ${typedFields}
+            ${notScalarTypes.length ? typeToInput(notScalarTypes, typedFields, 'UPDATE') : typedFields}
         }
         input Details${field.name}{
             _id: String!

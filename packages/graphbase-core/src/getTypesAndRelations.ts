@@ -1,4 +1,3 @@
-//TODO: now it doesnt work with [String] field?
 export const getTypesAndRelations = (graphQLType: string) => {
     const isRequired = new RegExp(/!$/).test(graphQLType);
     const isRequiredArrayElement = new RegExp(/!]/).test(graphQLType);

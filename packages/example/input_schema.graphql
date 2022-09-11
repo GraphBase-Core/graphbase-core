@@ -11,7 +11,7 @@ type Person @model {
   age: Int!
   someFloat: Float
   someBoolean: Boolean
-  interests: [Interests]
+  interests: [Interests!]
 }
 
 type Car @model {

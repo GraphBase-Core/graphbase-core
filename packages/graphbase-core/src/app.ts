@@ -9,8 +9,6 @@ const transformedSchema = TransformGraphQLSchema({
     transformers: [transformerCRUD],
 });
 
-console.log('fieldsArray', fieldsArray);
-
 writeSchemaToFile(transformedSchema);
 generateCRUD(fieldsArray);
 generateStucco(fieldsArray);
