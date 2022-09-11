@@ -3,11 +3,7 @@ export const getTypesAndRelations = (graphQLType: string) => {
     const isRequired = new RegExp(/!$/).test(graphQLType);
     const isRequiredArrayElement = new RegExp(/!]/).test(graphQLType);
 
-    console.log(graphQLType);
-    console.log('isRequiredArrayElement', isRequiredArrayElement);
-    console.log('isRequired', isRequired);
-
-    const justType = graphQLType.replace(/!$/g, '').trim();
+    const justType = graphQLType.replace(/!/g, '').trim();
 
     let typescriptType;
     switch (justType) {
@@ -24,18 +20,20 @@ export const getTypesAndRelations = (graphQLType: string) => {
             break;
         case '[String]':
         case '[ID]':
-            typescriptType = '[string]';
+            typescriptType = `[string${!isRequiredArrayElement ? ' | undefined]' : ''}`;
             break;
         case '[Int]':
         case '[Float]':
-            typescriptType = '[number]';
+            typescriptType = `[number${!isRequiredArrayElement ? ' | undefined]' : ''}`;
             break;
         case '[Boolean]':
-            typescriptType = '[boolean]';
+            typescriptType = `[boolean${!isRequiredArrayElement ? ' | undefined]' : ''}`;
             break;
         default:
             if (justType.startsWith('[')) {
-                typescriptType = `[${justType.replace(/[\[\]]/g, '')}ModelWithId]`;
+                typescriptType = `[${justType.replace(/[\[\]]/g, '')}ModelWithId${
+                    !isRequiredArrayElement ? ' | undefined' : ''
+                }]`;
             } else {
                 typescriptType = `${justType}ModelWithId`;
             }

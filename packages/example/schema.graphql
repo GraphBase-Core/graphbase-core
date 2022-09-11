@@ -44,7 +44,7 @@ input CreatePerson{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
-	interests: [Interests]!
+	interests: [Interests]
 }
 
 input UpdatePerson{
@@ -53,7 +53,7 @@ input UpdatePerson{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
-	interests: [Interests]!
+	interests: [Interests]
 }
 
 input DetailsPerson{
@@ -67,7 +67,7 @@ type PersonWithId{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
-	interests: [Interests]!
+	interests: [Interests]
 }
 
 type PersonQuery{
@@ -93,13 +93,13 @@ type PersonMutation{
 input CreateCar{
 	mark: String!
 	price: Float!
-	model: String
+	model: [String]
 }
 
 input UpdateCar{
 	mark: String!
 	price: Float!
-	model: String
+	model: [String]
 }
 
 input DetailsCar{
@@ -110,7 +110,7 @@ type CarWithId{
 	_id: String!
 	mark: String!
 	price: Float!
-	model: String
+	model: [String]
 }
 
 type CarQuery{
@@ -146,13 +146,13 @@ type Person @model{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
-	interests: [Interests]!
+	interests: [Interests]
 }
 
 type Car @model{
 	mark: String!
 	price: Float!
-	model: String
+	model: [String]
 }
 
 type Query{

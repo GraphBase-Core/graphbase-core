@@ -11,13 +11,13 @@ type Person @model {
   age: Int!
   someFloat: Float
   someBoolean: Boolean
-  interests: [Interests]!
+  interests: [Interests]
 }
 
 type Car @model {
   mark: String!
   price: Float!
-  model: String
+  model: [String]
 }
 
 type Query {
