@@ -36,9 +36,9 @@ export const generateStuccoJSON = (fieldTypeArray: Field[]) => `{
         ${
             fieldType.relations?.length
                 ? fieldType.relations.map(
-                      (rel) => `,"${fieldType.field_name}.${rel.relation_name.toLowerCase()}": {
+                      (relation) => `,"${fieldType.field_name}.${relation.replace(/[\[\]]/g, '').toLowerCase()}": {
                 "resolve": {
-                    "name": "lib/stucco/${fieldType.field_name}/${rel.relation_name}"
+                    "name": "lib/stucco/${fieldType.field_name}/${relation.replace(/[\[\]]/g, '').toLowerCase()}"
                 }
             }
         `,

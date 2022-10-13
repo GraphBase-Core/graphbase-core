@@ -1,53 +1,8 @@
-import { FieldType, Options, TreeToGraphQL, ScalarTypes } from 'graphql-js-tree';
+import { TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 import { generateModel } from './generateModel';
 import { fieldsArray } from './fieldsArray';
-
-const scalarTypes: string[] = [
-    ScalarTypes.String,
-    ScalarTypes.Boolean,
-    ScalarTypes.Float,
-    ScalarTypes.ID,
-    ScalarTypes.Int,
-];
-
-type Mode = 'CREATE' | 'UPDATE';
-
-export const getTypeName = (f: FieldType): string => {
-    if (f.type === Options.name) {
-        return f.name;
-    }
-    return getTypeName(f.nest);
-};
-
-export const compileType = (f: FieldType, fn: (x: string) => string = (x) => x): string => {
-    if (f.type === Options.name) {
-        return fn(f.name);
-    } else if (f.type === Options.array) {
-        return compileType(f.nest, (x) => `[${fn(x)}]`);
-    } else {
-        return compileType(f.nest, (x) => `${fn(x)}!`);
-    }
-};
-
-export const getNotScalarTypes = (typedFields: string) =>
-    typedFields
-        .split(`\n`)
-        .filter((a) => a !== '')
-        .map((b) =>
-            b
-                .split(':')[1]
-                .trim()
-                .replace(/[\[\]\!]/g, ''),
-        )
-        .filter((c) => !scalarTypes.includes(c));
-
-export const typeToInput = (notScalarTypes: string[], typedFields: string, mode: Mode) => {
-    mode === 'CREATE'
-        ? notScalarTypes.forEach((nsc) => (typedFields = typedFields.replace(nsc, `Create${nsc}`)))
-        : notScalarTypes.forEach((nsc) => (typedFields = typedFields.replace(nsc, `Update${nsc}`)));
-    return typedFields;
-};
+import { typeToInput, getNotScalarTypes } from './utils';
 
 export const transformerCRUD: TransformerDef = {
     transformer: ({ field, operations }) => {
@@ -63,17 +18,19 @@ export const transformerCRUD: TransformerDef = {
 
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
         const notScalarTypes = getNotScalarTypes(typedFields);
+
         fieldsArray.push({
             field_name: field.name,
+            relations: notScalarTypes,
         });
 
         generateModel(typedFields, field.name);
         return `
         input Create${field.name}{
-            ${notScalarTypes.length ? typeToInput(notScalarTypes, typedFields, 'CREATE') : typedFields}
+            ${notScalarTypes.length > 0 ? typeToInput(notScalarTypes, typedFields, 'CREATE') : typedFields}
         }
         input Update${field.name}{
-            ${notScalarTypes.length ? typeToInput(notScalarTypes, typedFields, 'UPDATE') : typedFields}
+            ${notScalarTypes.length > 0 ? typeToInput(notScalarTypes, typedFields, 'UPDATE') : typedFields}
         }
         input Details${field.name}{
             _id: String!

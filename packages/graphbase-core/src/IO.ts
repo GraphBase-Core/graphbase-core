@@ -49,14 +49,15 @@ export const generateCRUD = (fieldTypeArray: Field[], { stuccoJson = './src/stuc
         fs.writeFile(`${outputDir}/readAll.ts`, fillReadAllFile(fieldType.field_name), fileCallback);
         fs.writeFile(`${outputDir}/readOne.ts`, fillReadOneFile(fieldType.field_name), fileCallback);
 
-        // does it make sense that i spread it to diffrent resolvers based on relation
-        // fetch always using find() and return array with length 1 when is single relation?
-        fieldType.relations?.map((rel) => {
-            if (rel.type === 'MANY') {
-                fs.writeFile(`${outputDir}/${rel.relation_name}.ts`, fillMultipleRelation, fileCallback);
-            } else if (rel.type === 'SINGLE') {
-                fs.writeFile(`${outputDir}/${rel.relation_name}.ts`, fillSingleRelation, fileCallback);
-            }
+        fieldType.relations?.map((relation) => {
+            const transformedRelation = relation.replace(/[\[\]]/g, '');
+            fs.writeFile(
+                `${outputDir}/${transformedRelation.toLowerCase()}.ts`,
+                relation.startsWith('[')
+                    ? fillMultipleRelation(transformedRelation)
+                    : fillSingleRelation(transformedRelation),
+                fileCallback,
+            );
         });
     });
 };

@@ -63,6 +63,11 @@
                 "name": "lib/stucco/Person/readOne"
                 }
             }
+        ,"Person.interests": {
+                "resolve": {
+                    "name": "lib/stucco/Person/interests"
+                }
+            }
         
             ,"Mutation.car": {
         "skip": true
