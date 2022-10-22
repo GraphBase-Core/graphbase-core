@@ -19,10 +19,17 @@ export const generateModel = (typedFields: string, nameField: string) => {
         modelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1]);
     });
 
+    const updateModelObject: Record<string, any> = {};
+    arrayWithTypes.forEach((i) => {
+        const fieldTuple = i.split(':');
+        updateModelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1].replace(/!$/, ''));
+    });
+
     const modelDetailsObject: Record<string, any> = {};
     modelDetailsObject['_id'] = 'string';
     const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
+    const updateModel = `export type ${nameField}UpdateModel = ` + newStrigify(updateModelObject);
     const detailsModel = `export type ${nameField}ModelDetails = ` + newStrigify(modelDetailsObject);
     const modelWithId = `export type ${nameField}ModelWithId = ${nameField}ModelDetails & ${nameField}Model`;
-    models.push(model, detailsModel, modelWithId);
+    models.push(model, updateModel, detailsModel, modelWithId);
 };

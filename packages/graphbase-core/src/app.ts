@@ -17,4 +17,5 @@ generateStucco(fieldsArray);
 export { mc } from './db/mongoDB/connection';
 export { FieldResolveInput, FieldResolveOutput } from 'stucco-js';
 export { makeHandler } from './makeHandler';
-//implenet resolvers
+//implenet multiple resolvers
+//change update inputs

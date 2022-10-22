@@ -4,7 +4,7 @@ input CreateInterests{
 }
 
 input UpdateInterests{
-	name: String!
+	name: String
 	description: String
 }
 
@@ -48,12 +48,12 @@ input CreatePerson{
 }
 
 input UpdatePerson{
-	firstName: String!
-	lastName: String!
-	age: Int!
+	firstName: String
+	lastName: String
+	age: Int
 	someFloat: Float
 	someBoolean: Boolean
-	interests: UpdateInterests!
+	interests: UpdateInterests
 }
 
 input DetailsPerson{
@@ -91,14 +91,14 @@ type PersonMutation{
 }
 
 input CreateCar{
-	mark: String!
-	price: Float!
+	mark: String
+	price: Float
 	model: [String]
 }
 
 input UpdateCar{
-	mark: String!
-	price: Float!
+	mark: String
+	price: Float
 	model: [String]
 }
 
@@ -108,8 +108,8 @@ input DetailsCar{
 
 type CarWithId{
 	_id: String!
-	mark: String!
-	price: Float!
+	mark: String
+	price: Float
 	model: [String]
 }
 
@@ -150,8 +150,8 @@ type Person @model{
 }
 
 type Car @model{
-	mark: String!
-	price: Float!
+	mark: String
+	price: Float
 	model: [String]
 }
 

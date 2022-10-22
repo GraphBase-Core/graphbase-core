@@ -30,7 +30,11 @@ export const transformerCRUD: TransformerDef = {
             ${notScalarTypes.length > 0 ? typeToInput(notScalarTypes, typedFields, 'CREATE') : typedFields}
         }
         input Update${field.name}{
-            ${notScalarTypes.length > 0 ? typeToInput(notScalarTypes, typedFields, 'UPDATE') : typedFields}
+            ${
+                notScalarTypes.length > 0
+                    ? typeToInput(notScalarTypes, typedFields, 'UPDATE')
+                    : typedFields.replace(/[\!]/g, '')
+            }
         }
         input Details${field.name}{
             _id: String!

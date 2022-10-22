@@ -1,10 +1,10 @@
 /* DO NOT EDIT - generated */
-import { CarModel, CarModelDetails } from '../../generated/model';
+import { CarModel, CarUpdateModel, CarModelDetails } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
-  arguments: { details: CarModelDetails; car: CarModel };
+  arguments: { details: CarModelDetails; car: CarUpdateModel };
 };
 
 const updateHandler = (db: Db) => (input: InputModel) =>

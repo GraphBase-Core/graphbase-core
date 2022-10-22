@@ -15,8 +15,8 @@ type Person @model {
 }
 
 type Car @model {
-  mark: String!
-  price: Float!
+  mark: String
+  price: Float
   model: [String]
 }
 

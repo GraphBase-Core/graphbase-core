@@ -8,7 +8,9 @@ export const typeToInput = (notScalarTypes: string[], typedFields: string, mode:
           })
         : notScalarTypes.forEach((nsc) => {
               const transformedNsc = nsc.replace(/[\[\]]/g, '');
-              return (typedFields = typedFields.replace(transformedNsc, `Update${transformedNsc}`));
+              return (typedFields = typedFields
+                  .replace(transformedNsc, `Update${transformedNsc}`)
+                  .replace(/[\!]/g, ''));
           });
     return typedFields;
 };
