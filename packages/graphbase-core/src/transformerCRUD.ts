@@ -36,23 +36,18 @@ export const transformerCRUD: TransformerDef = {
                     : typedFields.replace(/[\!]/g, '')
             }
         }
-        input Details${field.name}{
-            _id: String!
-        }
         type ${field.name}WithId{
             _id: String!
             ${typedFields}
         }
         type ${field.name}Query{
             readAll: [${field.name}WithId!]!
-            readOne(details: Details${field.name}): ${field.name}WithId
+            readOne( _id: String!): ${field.name}WithId
         }
         type ${field.name}Mutation{
             create( ${field.name[0].toLowerCase() + field.name.slice(1)}: Create${field.name} ): String!
-            update( ${field.name[0].toLowerCase() + field.name.slice(1)}: Update${field.name}, details: Details${
-            field.name
-        } ): Boolean!
-            delete( details: Details${field.name} ): Boolean!
+            update( ${field.name[0].toLowerCase() + field.name.slice(1)}: Update${field.name},  _id: String! ): Boolean!
+            delete( _id: String! ): Boolean!
         }
         extend type ${operations.query.name}{
             ${field.name[0].toLowerCase() + field.name.slice(1)}: ${field.name}Query

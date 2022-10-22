@@ -4,14 +4,16 @@ import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
 
 type InputModel = Omit<FieldResolveInput, 'source'> & {
-  source: { interests: string };
+  source: { interests: string[] };
 };
 
-
-const singleRelationsHandler = (db: Db) => (input: InputModel) =>
-   db
+const multipleRelationsHandler = (db: Db) => (input: InputModel) =>
+{ 
+ return db
     .collection<InterestsModel>('Interests')
-    .findOne({ _id: new ObjectId(input.source.interests ) })
-    .then((res) => res && { ...res, _id: res._id.toString() });
+    .find({_id : { $in : input.source.interests.map(s => new ObjectId(s)) }})
+    .toArray()
+    .then((res) => res.map((i) => ({ ...i, _id: i._id.toString() })));}
 
-export const handler = makeHandler({ handlerFactory: singleRelationsHandler });
+export const handler = makeHandler({ handlerFactory: multipleRelationsHandler });
+

@@ -23,12 +23,10 @@ export const generateModel = (typedFields: string, nameField: string) => {
         createModelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1], true);
         updateModelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1].replace(/!$/, ''), true);
     });
-    const modelDetailsObject: Record<string, any> = {};
-    modelDetailsObject['_id'] = 'string';
+    const idType = '{_id: string}';
     const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
     const createModel = `export type ${nameField}CreateModel = ` + newStrigify(createModelObject);
     const updateModel = `export type ${nameField}UpdateModel = ` + newStrigify(updateModelObject);
-    const detailsModel = `export type ${nameField}ModelDetails = ` + newStrigify(modelDetailsObject);
-    const modelWithId = `export type ${nameField}ModelWithId = ${nameField}ModelDetails & ${nameField}Model`;
-    models.push(model, createModel, updateModel, detailsModel, modelWithId);
+    const modelWithId = `export type ${nameField}ModelWithId = ${nameField}Model & ${idType}`;
+    models.push(model, createModel, updateModel, modelWithId);
 };
