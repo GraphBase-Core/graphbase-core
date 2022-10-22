@@ -44,7 +44,7 @@ export const writeModelToFile = (models: string[], { generatedDir = './src/gener
 };
 
 export const generateCRUD = (fieldTypeArray: Field[], { stuccoJson = './src/stucco' }: Options = {}) => {
-    fieldTypeArray.map((fieldType) => {
+    fieldTypeArray.forEach((fieldType) => {
         const outputDir = `${stuccoJson}/${fieldType.field_name}`;
         fs.mkdirSync(`${outputDir}`, { recursive: true });
         fs.writeFile(`${outputDir}/create.ts`, fillCreateFile(fieldType.field_name), fileCallback);
@@ -53,7 +53,7 @@ export const generateCRUD = (fieldTypeArray: Field[], { stuccoJson = './src/stuc
         fs.writeFile(`${outputDir}/readAll.ts`, fillReadAllFile(fieldType.field_name), fileCallback);
         fs.writeFile(`${outputDir}/readOne.ts`, fillReadOneFile(fieldType.field_name), fileCallback);
 
-        fieldType.relations?.map((relation) => {
+        fieldType.relations?.forEach((relation) => {
             const transformedRelation = relation.replace(/[\[\]]/g, '');
             fs.writeFile(
                 `${outputDir}/${transformedRelation.toLowerCase()}.ts`,
