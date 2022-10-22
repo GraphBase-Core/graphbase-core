@@ -11,19 +11,19 @@ lastName:string,
 age:number,
 someFloat:number | undefined,
 someBoolean:boolean | undefined,
-interests:InterestsModelWithId};
+interests:[InterestsModelWithId]};
 export type PersonCreateModel = {firstName:string,
 lastName:string,
 age:number,
 someFloat:number | undefined,
 someBoolean:boolean | undefined,
-interests:string};
+interests:[string]};
 export type PersonUpdateModel = {firstName:string | undefined,
 lastName:string | undefined,
 age:number | undefined,
 someFloat:number | undefined,
 someBoolean:boolean | undefined,
-interests:string | undefined};
+interests:[string] | undefined};
 export type PersonModelDetails = {_id:string};
 export type PersonModelWithId = PersonModelDetails & PersonModel;
 export type CarModel = {mark:string | undefined,

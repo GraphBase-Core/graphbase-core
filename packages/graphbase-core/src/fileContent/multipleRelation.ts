@@ -9,10 +9,9 @@ type InputModel = Omit<FieldResolveInput, 'source'> & {
 
 const multipleRelationsHandler = (db: Db) => (input: InputModel) =>
 { 
-  cosnole.log(input);
  return db
     .collection<${fildName}Model>('${fildName}')
-    .find({_id : { $in : input.source.${fildName.toLowerCase()}.map.(s => new ObjectId(s)) }})
+    .find({_id : { $in : input.source.${fildName.toLowerCase()}.map(s => new ObjectId(s)) }})
     .toArray()
     .then((res) => res.map((i) => ({ ...i, _id: i._id.toString() })));}
 
