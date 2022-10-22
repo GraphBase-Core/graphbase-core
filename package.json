@@ -1,18 +1,17 @@
 {
-  "name": "graphbase-native-client",
+  "name": "graphbase-core-client",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start:example": "npm run build -w graphbase-native && npm run start -w example",
-    "start:example:windows": "npm run build:windows -w graphbase-native && npm run start -w example",
-    "restart": "rm -rf ./packages/example/src && rm -rf ./packages/example/lib && rm -rf ./packages/graphbase-native/lib && rm -rf ./packages/example/schema.graphql && rm -rf ./packages/example/stucco.json",
-    "restart:windows": "del ./packages/example/src && del ./packages/example/lib && del ./packages/graphbase-native/lib && del ./packages/example/schema.graphql && del ./packages/example/stucco.json"
+    "example": "npm run build -w graphbase-core && npm run start -w example",
+    "example:windows": "npm run build:windows -w graphbase-core && npm run start -w example",
+    "stucco": "npm run stucco -w example"
   },
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {
-    "graphbase-native": "^1.0.0"
+    "graphbase-core": "file:packages/graphbase-core"
   }
 }

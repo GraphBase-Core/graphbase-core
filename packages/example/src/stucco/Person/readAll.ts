@@ -1,7 +1,7 @@
 /* DO NOT EDIT - generated */
 import { PersonModel } from '../../generated/model';
 import { Db } from 'mongodb';
-import { makeHandler } from 'graphbase-native';
+import { makeHandler } from 'graphbase-core';
 
 const readAllHandler = (db: Db) => () =>
     db.collection<PersonModel>('Person')

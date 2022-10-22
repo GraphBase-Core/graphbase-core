@@ -1,17 +1,59 @@
+input CreateInterests{
+	name: String!
+	description: String
+}
+
+input UpdateInterests{
+	name: String
+	description: String
+}
+
+input DetailsInterests{
+	_id: String!
+}
+
+type InterestsWithId{
+	_id: String!
+	name: String!
+	description: String
+}
+
+type InterestsQuery{
+	readAll: [InterestsWithId!]!
+	readOne(
+		details: DetailsInterests
+	): InterestsWithId
+}
+
+type InterestsMutation{
+	create(
+		interests: CreateInterests
+	): String!
+	update(
+		interests: UpdateInterests
+		details: DetailsInterests
+	): Boolean!
+	delete(
+		details: DetailsInterests
+	): Boolean!
+}
+
 input CreatePerson{
 	firstName: String!
 	lastName: String!
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
+	interests: [String!]!
 }
 
 input UpdatePerson{
-	firstName: String!
-	lastName: String!
-	age: Int!
+	firstName: String
+	lastName: String
+	age: Int
 	someFloat: Float
 	someBoolean: Boolean
+	interests: [String]
 }
 
 input DetailsPerson{
@@ -25,6 +67,7 @@ type PersonWithId{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
+	interests: [Interests!]!
 }
 
 type PersonQuery{
@@ -48,15 +91,15 @@ type PersonMutation{
 }
 
 input CreateCar{
-	mark: String!
-	price: Float!
-	model: String
+	mark: String
+	price: Float
+	model: [String]
 }
 
 input UpdateCar{
-	mark: String!
-	price: Float!
-	model: String
+	mark: String
+	price: Float
+	model: [String]
 }
 
 input DetailsCar{
@@ -65,9 +108,9 @@ input DetailsCar{
 
 type CarWithId{
 	_id: String!
-	mark: String!
-	price: Float!
-	model: String
+	mark: String
+	price: Float
+	model: [String]
 }
 
 type CarQuery{
@@ -92,28 +135,36 @@ type CarMutation{
 
 directive @model on OBJECT
 
+type Interests @model{
+	name: String!
+	description: String
+}
+
 type Person @model{
 	firstName: String!
 	lastName: String!
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
+	interests: [Interests!]!
 }
 
 type Car @model{
-	mark: String!
-	price: Float!
-	model: String
+	mark: String
+	price: Float
+	model: [String]
 }
 
 type Query{
 	version: String
+	interests: InterestsQuery
 	person: PersonQuery
 	car: CarQuery
 }
 
 type Mutation{
 	version: String
+	interests: InterestsMutation
 	person: PersonMutation
 	car: CarMutation
 }

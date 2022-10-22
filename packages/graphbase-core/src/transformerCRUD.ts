@@ -1,7 +1,8 @@
 import { TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 import { generateModel } from './generateModel';
-import { fieldNamesArray } from './fieldNames';
+import { fieldsArray } from './data';
+import { typeToInput, getNotScalarTypes } from './utils';
 
 export const transformerCRUD: TransformerDef = {
     transformer: ({ field, operations }) => {
@@ -14,15 +15,26 @@ export const transformerCRUD: TransformerDef = {
         if (!operations.mutation) {
             throw new Error('Query type required');
         }
+
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
+        const notScalarTypes = getNotScalarTypes(typedFields);
+        // resolvery poprawic
+        fieldsArray.push({
+            field_name: field.name,
+            relations: notScalarTypes,
+        });
+
         generateModel(typedFields, field.name);
-        fieldNamesArray.push(field.name);
         return `
         input Create${field.name}{
-            ${typedFields}
+            ${notScalarTypes.length > 0 ? typeToInput(notScalarTypes, typedFields, 'CREATE') : typedFields}
         }
         input Update${field.name}{
-            ${typedFields}
+            ${
+                notScalarTypes.length > 0
+                    ? typeToInput(notScalarTypes, typedFields, 'UPDATE')
+                    : typedFields.replace(/[\!]/g, '')
+            }
         }
         input Details${field.name}{
             _id: String!
