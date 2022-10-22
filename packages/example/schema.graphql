@@ -8,10 +8,6 @@ input UpdateInterests{
 	description: String
 }
 
-input DetailsInterests{
-	_id: String!
-}
-
 type InterestsWithId{
 	_id: String!
 	name: String!
@@ -21,7 +17,7 @@ type InterestsWithId{
 type InterestsQuery{
 	readAll: [InterestsWithId!]!
 	readOne(
-		details: DetailsInterests
+		_id: String!
 	): InterestsWithId
 }
 
@@ -31,10 +27,10 @@ type InterestsMutation{
 	): String!
 	update(
 		interests: UpdateInterests
-		details: DetailsInterests
+		_id: String!
 	): Boolean!
 	delete(
-		details: DetailsInterests
+		_id: String!
 	): Boolean!
 }
 
@@ -56,10 +52,6 @@ input UpdatePerson{
 	interests: [String]
 }
 
-input DetailsPerson{
-	_id: String!
-}
-
 type PersonWithId{
 	_id: String!
 	firstName: String!
@@ -73,7 +65,7 @@ type PersonWithId{
 type PersonQuery{
 	readAll: [PersonWithId!]!
 	readOne(
-		details: DetailsPerson
+		_id: String!
 	): PersonWithId
 }
 
@@ -83,10 +75,10 @@ type PersonMutation{
 	): String!
 	update(
 		person: UpdatePerson
-		details: DetailsPerson
+		_id: String!
 	): Boolean!
 	delete(
-		details: DetailsPerson
+		_id: String!
 	): Boolean!
 }
 
@@ -102,10 +94,6 @@ input UpdateCar{
 	model: [String]
 }
 
-input DetailsCar{
-	_id: String!
-}
-
 type CarWithId{
 	_id: String!
 	mark: String
@@ -116,7 +104,7 @@ type CarWithId{
 type CarQuery{
 	readAll: [CarWithId!]!
 	readOne(
-		details: DetailsCar
+		_id: String!
 	): CarWithId
 }
 
@@ -126,10 +114,10 @@ type CarMutation{
 	): String!
 	update(
 		car: UpdateCar
-		details: DetailsCar
+		_id: String!
 	): Boolean!
 	delete(
-		details: DetailsCar
+		_id: String!
 	): Boolean!
 }
 
