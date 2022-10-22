@@ -1,4 +1,4 @@
-export const getTypesAndRelations = (graphQLType: string) => {
+export const getTypesAndRelations = (graphQLType: string, isMutationType: boolean) => {
     const isRequired = new RegExp(/!$/).test(graphQLType);
     const isRequiredArrayElement = new RegExp(/!]/).test(graphQLType);
 
@@ -29,12 +29,14 @@ export const getTypesAndRelations = (graphQLType: string) => {
             typescriptType = `[boolean${!isRequiredArrayElement ? ' | undefined]' : ''}`;
             break;
         default:
-            if (justType.startsWith('[')) {
-                typescriptType = `[${justType.replace(/[\[\]]/g, '')}ModelWithId${
-                    !isRequiredArrayElement ? ' | undefined' : ''
-                }]`;
+            if (isMutationType) {
+                typescriptType = justType.startsWith('[')
+                    ? `[string${!isRequiredArrayElement ? ' | undefined' : ''}]`
+                    : 'string';
             } else {
-                typescriptType = `${justType}ModelWithId`;
+                typescriptType = justType.startsWith('[')
+                    ? `[${justType.replace(/[\[\]]/g, '')}ModelWithId${!isRequiredArrayElement ? ' | undefined' : ''}]`
+                    : `${justType}ModelWithId`;
             }
     }
     if (!isRequired) {

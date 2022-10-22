@@ -14,22 +14,21 @@ const newStrigify = (x: StructuredData): string => {
 export const generateModel = (typedFields: string, nameField: string) => {
     const arrayWithTypes = typedFields.split(/(\r\n|\n|\r)/gm).filter((i) => i !== '\n' && i !== '');
     const modelObject: Record<string, any> = {};
-    arrayWithTypes.forEach((i) => {
-        const fieldTuple = i.split(':');
-        modelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1]);
-    });
-
     const updateModelObject: Record<string, any> = {};
+    const createModelObject: Record<string, any> = {};
+
     arrayWithTypes.forEach((i) => {
         const fieldTuple = i.split(':');
-        updateModelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1].replace(/!$/, ''));
+        modelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1], false);
+        createModelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1], true);
+        updateModelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1].replace(/!$/, ''), true);
     });
-
     const modelDetailsObject: Record<string, any> = {};
     modelDetailsObject['_id'] = 'string';
     const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
+    const createModel = `export type ${nameField}CreateModel = ` + newStrigify(createModelObject);
     const updateModel = `export type ${nameField}UpdateModel = ` + newStrigify(updateModelObject);
     const detailsModel = `export type ${nameField}ModelDetails = ` + newStrigify(modelDetailsObject);
     const modelWithId = `export type ${nameField}ModelWithId = ${nameField}ModelDetails & ${nameField}Model`;
-    models.push(model, updateModel, detailsModel, modelWithId);
+    models.push(model, createModel, updateModel, detailsModel, modelWithId);
 };
