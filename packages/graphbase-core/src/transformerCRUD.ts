@@ -1,7 +1,7 @@
 import { TreeToGraphQL } from 'graphql-js-tree';
 import { TransformerDef } from 'transform-graphql';
 import { generateModel } from './generateModel';
-import { fieldsArray } from './fieldsArray';
+import { fieldsArray } from './data';
 import { typeToInput, getNotScalarTypes } from './utils';
 
 export const transformerCRUD: TransformerDef = {
@@ -18,7 +18,7 @@ export const transformerCRUD: TransformerDef = {
 
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
         const notScalarTypes = getNotScalarTypes(typedFields);
-
+        // resolvery poprawic
         fieldsArray.push({
             field_name: field.name,
             relations: notScalarTypes,

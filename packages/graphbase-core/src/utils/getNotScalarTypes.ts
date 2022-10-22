@@ -7,6 +7,10 @@ const scalarTypes: string[] = [
     ScalarTypes.ID,
     ScalarTypes.Int,
     '[String]',
+    '[Boolean]',
+    '[Float]',
+    '[ID]',
+    '[Int]',
 ];
 export const getNotScalarTypes = (typedFields: string) =>
     typedFields

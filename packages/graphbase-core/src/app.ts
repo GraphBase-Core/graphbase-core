@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { TransformGraphQLSchema } from 'transform-graphql';
-import { readSchemaFromFiles, writeSchemaToFile, generateCRUD, generateStucco } from './IO';
+import { readSchemaFromFiles, writeSchemaToFile, generateCRUD, generateStucco, writeModelToFile } from './IO';
 import { transformerCRUD } from './transformerCRUD';
-import { fieldsArray } from './fieldsArray';
+import { fieldsArray, models } from './data';
 
 const transformedSchema = TransformGraphQLSchema({
     schema: readSchemaFromFiles(),
@@ -10,6 +10,7 @@ const transformedSchema = TransformGraphQLSchema({
 });
 
 writeSchemaToFile(transformedSchema);
+writeModelToFile(models);
 generateCRUD(fieldsArray);
 generateStucco(fieldsArray);
 
@@ -18,3 +19,4 @@ export { FieldResolveInput, FieldResolveOutput } from 'stucco-js';
 export { makeHandler } from './makeHandler';
 //relation inputs generate as type no like input
 //implenet resolvers
+// change map to forEach

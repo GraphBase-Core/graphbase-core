@@ -63,7 +63,7 @@
                 "name": "lib/stucco/Person/readOne"
                 }
             }
-        ,"Person.interests": {
+        ,"PersonWithId.interests": {
                 "resolve": {
                     "name": "lib/stucco/Person/interests"
                 }

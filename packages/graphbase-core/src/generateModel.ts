@@ -1,5 +1,5 @@
-import { writeModelToFile } from './IO';
 import { getTypesAndRelations } from './getTypesAndRelations';
+import { models } from './data';
 
 type StructuredData = {
     [x: string]: string | StructuredData;
@@ -24,7 +24,5 @@ export const generateModel = (typedFields: string, nameField: string) => {
     const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
     const detailsModel = `export type ${nameField}ModelDetails = ` + newStrigify(modelDetailsObject);
     const modelWithId = `export type ${nameField}ModelWithId = ${nameField}ModelDetails & ${nameField}Model`;
-    writeModelToFile(model);
-    writeModelToFile(detailsModel);
-    writeModelToFile(modelWithId);
+    models.push(model, detailsModel, modelWithId);
 };

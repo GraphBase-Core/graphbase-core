@@ -4,3 +4,5 @@ export type Field = {
 };
 
 export const fieldsArray: Field[] = [];
+
+export const models: string[] = [];

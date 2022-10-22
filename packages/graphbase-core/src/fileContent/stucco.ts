@@ -1,4 +1,4 @@
-import { Field } from 'fieldsArray';
+import { Field } from 'data';
 export const generateStuccoJSON = (fieldTypeArray: Field[]) => `{
 "resolvers": {
     ${fieldTypeArray.map(
@@ -36,7 +36,9 @@ export const generateStuccoJSON = (fieldTypeArray: Field[]) => `{
         ${
             fieldType.relations?.length
                 ? fieldType.relations.map(
-                      (relation) => `,"${fieldType.field_name}.${relation.replace(/[\[\]]/g, '').toLowerCase()}": {
+                      (relation) => `,"${fieldType.field_name}WithId.${relation
+                          .replace(/[\[\]]/g, '')
+                          .toLowerCase()}": {
                 "resolve": {
                     "name": "lib/stucco/${fieldType.field_name}/${relation.replace(/[\[\]]/g, '').toLowerCase()}"
                 }

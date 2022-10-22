@@ -3,11 +3,15 @@ import { ${fildName}Model } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
 
-const singleRelationsHandler = (db: Db) => (input: FieldResolveInput) =>
-  db
+type InputModel = Omit<FieldResolveInput, 'source'> & {
+  source: { ${fildName.toLowerCase()}: string };
+};
+
+
+const singleRelationsHandler = (db: Db) => (input: InputModel) =>
+   db
     .collection<${fildName}Model>('${fildName}')
-    .find({ _id: new ObjectId(input.source as string) })
-    .toArray()
-    .then((res) => res.map((i) => ({ ...i, _id: i._id.toString() })));
+    .findOne({ _id: new ObjectId(input.source.${fildName.toLowerCase()} ) })
+    .then((res) => res && { ...res, _id: res._id.toString() });
 
 export const handler = makeHandler({ handlerFactory: singleRelationsHandler });`;

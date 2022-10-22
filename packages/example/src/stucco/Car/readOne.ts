@@ -7,10 +7,12 @@ type InputModel = Omit<FieldResolveInput, 'arguments'> & {
   arguments: { details: CarModelDetails };
 };
 
-const readOneHandler = (db: Db) => (input: InputModel) =>
-  db
-    .collection<CarModel>('Car')
-    .findOne({ _id: new ObjectId(input.arguments.details._id) })
-    .then((i) => ({ ...i, _id: i?._id.toString() }));
+const readOneHandler = (db: Db) => (input: InputModel) => 
+ db
+.collection<CarModel>('Car')
+.findOne({ _id: new ObjectId(input.arguments.details._id) })
+.then((i) => ({ ...i, _id: i?._id.toString() }));
+
+
 
 export const handler = makeHandler({ handlerFactory: readOneHandler });

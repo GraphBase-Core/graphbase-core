@@ -3,12 +3,18 @@ import { ${fildName}Model } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
 
-const multipleRelationsHandler = (db: Db) => (input: FieldResolveInput) =>
-  db
+type InputModel = Omit<FieldResolveInput, 'source'> & {
+  source: { ${fildName.toLowerCase()}: string[] };
+};
+
+const multipleRelationsHandler = (db: Db) => (input: InputModel) =>
+{ 
+  cosnole.log(input);
+ return db
     .collection<${fildName}Model>('${fildName}')
-    .find(_id : { $in : input.source.map.(s => new ObjectId(s)) })
+    .find({_id : { $in : input.source.${fildName.toLowerCase()}.map.(s => new ObjectId(s)) }})
     .toArray()
-    .then((res) => res.map((i) => ({ ...i, _id: i._id.toString() })));
+    .then((res) => res.map((i) => ({ ...i, _id: i._id.toString() })));}
 
 export const handler = makeHandler({ handlerFactory: multipleRelationsHandler });
 

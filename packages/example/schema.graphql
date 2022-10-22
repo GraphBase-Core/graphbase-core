@@ -44,7 +44,7 @@ input CreatePerson{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
-	interests: [CreateInterests!]
+	interests: CreateInterests!
 }
 
 input UpdatePerson{
@@ -53,7 +53,7 @@ input UpdatePerson{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
-	interests: [UpdateInterests!]
+	interests: UpdateInterests!
 }
 
 input DetailsPerson{
@@ -67,7 +67,7 @@ type PersonWithId{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
-	interests: [Interests!]
+	interests: Interests!
 }
 
 type PersonQuery{
@@ -146,7 +146,7 @@ type Person @model{
 	age: Int!
 	someFloat: Float
 	someBoolean: Boolean
-	interests: [Interests!]
+	interests: Interests!
 }
 
 type Car @model{

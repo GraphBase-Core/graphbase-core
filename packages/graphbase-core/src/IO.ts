@@ -1,4 +1,4 @@
-import { Field } from './fieldsArray';
+import { Field } from './data';
 import { generateStuccoJSON } from './fileContent/stucco';
 import fs from 'fs';
 import {
@@ -33,10 +33,14 @@ export const writeSchemaToFile = (data: string, { schema = './schema.graphql' }:
     fs.writeFile(schema, data, fileCallback);
 };
 
-export const writeModelToFile = (model: string, { generatedDir = './src/generated' }: Options = {}) => {
+export const writeModelToFile = (models: string[], { generatedDir = './src/generated' }: Options = {}) => {
     const outputDir = `${generatedDir}/model.ts`;
     fs.mkdirSync(generatedDir, { recursive: true });
-    fs.appendFile(outputDir, model + '\n', fileCallback);
+    let allModels = '';
+    models.forEach((model) => {
+        allModels = allModels.concat(model.concat(';\n'));
+    });
+    fs.writeFile(outputDir, allModels, fileCallback);
 };
 
 export const generateCRUD = (fieldTypeArray: Field[], { stuccoJson = './src/stucco' }: Options = {}) => {
