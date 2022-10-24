@@ -38,8 +38,8 @@ input CreatePerson{
 	firstName: String!
 	lastName: String!
 	age: Int!
-	someFloat: Float
-	someBoolean: Boolean
+	height: Float
+	hasDrivingLicences: Boolean
 	interests: [String!]!
 }
 
@@ -47,8 +47,8 @@ input UpdatePerson{
 	firstName: String
 	lastName: String
 	age: Int
-	someFloat: Float
-	someBoolean: Boolean
+	height: Float
+	hasDrivingLicences: Boolean
 	interests: [String]
 }
 
@@ -57,8 +57,8 @@ type PersonWithId{
 	firstName: String!
 	lastName: String!
 	age: Int!
-	someFloat: Float
-	someBoolean: Boolean
+	height: Float
+	hasDrivingLicences: Boolean
 	interests: [Interests!]!
 }
 
@@ -132,8 +132,8 @@ type Person @model{
 	firstName: String!
 	lastName: String!
 	age: Int!
-	someFloat: Float
-	someBoolean: Boolean
+	height: Float
+	hasDrivingLicences: Boolean
 	interests: [Interests!]!
 }
 
