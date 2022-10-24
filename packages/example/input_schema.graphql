@@ -9,8 +9,8 @@ type Person @model {
   firstName: String!
   lastName: String!
   age: Int!
-  someFloat: Float
-  someBoolean: Boolean
+  height: Float
+  hasDrivingLicences: Boolean
   interests: [Interests!]!
 }
 
