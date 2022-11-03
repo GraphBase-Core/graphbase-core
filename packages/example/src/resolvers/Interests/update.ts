@@ -1,18 +1,18 @@
 /* DO NOT EDIT - generated */
-import { PersonUpdateModel } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
+import { InterestsUpdateModel } from '../../models/models';
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
-  arguments: { _id: string; person: PersonUpdateModel };
+  arguments: { _id: string; interests: InterestsUpdateModel };
 };
 
 const updateHandler = (db: Db) => (input: InputModel) =>
   db
-    .collection<PersonUpdateModel>('Person')
+    .collection<InterestsUpdateModel>('Interests')
     .updateOne(
       { _id: new ObjectId(input.arguments._id) },
-      { $set: input.arguments.person }
+      { $set: input.arguments.interests }
     )
     .then((res) => res.modifiedCount > 0);
     

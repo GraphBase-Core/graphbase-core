@@ -1,11 +1,11 @@
-export const fillReadAllFile = (fildName: string) =>
+export const fillReadAllFile = (fieldName: string) =>
     `/* DO NOT EDIT - generated */
-import { ${fildName}Model } from '../../generated/model';
 import { Db } from 'mongodb';
 import { makeHandler } from 'graphbase-core';
+import { ${fieldName}Model } from '../../models/models';
 
 const readAllHandler = (db: Db) => () =>
-    db.collection<${fildName}Model>('${fildName}')
+    db.collection<${fieldName}Model>('${fieldName}')
     .find()
     .toArray()
     .then((res) => res.map((i) => ({ ...i, _id: i._id.toString() })));

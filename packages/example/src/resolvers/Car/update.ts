@@ -1,7 +1,7 @@
 /* DO NOT EDIT - generated */
-import { CarUpdateModel } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
+import { CarUpdateModel } from '../../models/models';
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
   arguments: { _id: string; car: CarUpdateModel };

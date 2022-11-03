@@ -1,16 +1,17 @@
 /* DO NOT EDIT - generated */
-import { InterestsCreateModel } from '../../generated/model';
 import { Db } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
+import { CarCreateModel } from '../../models/models';
+
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
-  arguments: { interests: InterestsCreateModel  };
+  arguments: { car: CarCreateModel  };
 };
 
 const createHandler = (db: Db) => (input: InputModel) =>
   db
-    .collection<InterestsCreateModel>('Interests')
-    .insertOne({ ...input.arguments.interests })
+    .collection<CarCreateModel>('Car')
+    .insertOne({ ...input.arguments.car })
     .then((res) => res.insertedId.toString());
 
 export const handler = makeHandler({ handlerFactory: createHandler });

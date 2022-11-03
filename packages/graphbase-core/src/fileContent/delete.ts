@@ -1,8 +1,9 @@
-export const fillDeleteFile = (fildName: string) =>
+export const fillDeleteFile = (fieldName: string) =>
     `/* DO NOT EDIT - generated */
-import { ${fildName}Model } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
+import { ${fieldName}Model } from '../../models/models';
+
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
     arguments: { _id: string };
@@ -10,7 +11,7 @@ type InputModel = Omit<FieldResolveInput, 'arguments'> & {
 
 const deleteHandler = (db: Db) => (input: InputModel) =>
 db
-    .collection<${fildName}Model>('${fildName}')
+    .collection<${fieldName}Model>('${fieldName}')
     .deleteOne({ _id: new ObjectId(input.arguments._id) })
     .then((res) => res.deletedCount > 0);
 

@@ -1,7 +1,8 @@
 /* DO NOT EDIT - generated */
-import { InterestsModel } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
+import { InterestsModel } from '../../models/models';
+
 
 type InputModel = Omit<FieldResolveInput, 'source'> & {
   source: { interests: string[] };

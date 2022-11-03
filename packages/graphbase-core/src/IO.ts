@@ -19,33 +19,32 @@ const fileCallback = (err: NodeJS.ErrnoException | null) => {
 };
 
 export interface Options {
-    generatedDir?: string;
-    stuccoJson?: string;
-    schema?: string;
     stuccoConfig?: string;
+    pathToInputSchema?: string;
+    pathToOutputSchema?: string;
 }
 
-export const readSchemaFromFiles = (path?: string) => {
-    const pathToSchema = path || './input_schema.graphql';
-    return fs.readFileSync(pathToSchema, 'utf-8');
+export const readSchemaFromFile = ({ pathToInputSchema = './input_schema.graphql' }: Options = {}) => {
+    return fs.readFileSync(pathToInputSchema, 'utf-8');
 };
-export const writeSchemaToFile = (data: string, { schema = './schema.graphql' }: Options = {}) => {
-    fs.writeFile(schema, data, fileCallback);
+export const writeSchemaToFile = (data: string, { pathToOutputSchema = './schema.graphql' }: Options = {}) => {
+    fs.writeFile(pathToOutputSchema, data, fileCallback);
 };
 
-export const writeModelToFile = (models: string[], { generatedDir = './src/generated' }: Options = {}) => {
-    const outputDir = `${generatedDir}/model.ts`;
-    fs.mkdirSync(generatedDir, { recursive: true });
-    let allModels = '';
+export const writeModelToFile = (models: string[]) => {
+    const modelsDir = './src/models';
+    const outputDir = `${modelsDir}/models.ts`;
+    fs.mkdirSync(modelsDir, { recursive: true });
+    let allModels = '/* DO NOT EDIT - generated */\n';
     models.forEach((model) => {
         allModels = allModels.concat(model.concat(';\n'));
     });
     fs.writeFile(outputDir, allModels, fileCallback);
 };
 
-export const generateCRUD = (fieldTypeArray: Field[], { stuccoJson = './src/stucco' }: Options = {}) => {
+export const generateCRUD = (fieldTypeArray: Field[]) => {
     fieldTypeArray.forEach((fieldType) => {
-        const outputDir = `${stuccoJson}/${fieldType.field_name}`;
+        const outputDir = `./src/resolvers/${fieldType.field_name}`;
         fs.mkdirSync(`${outputDir}`, { recursive: true });
         fs.writeFile(`${outputDir}/create.ts`, fillCreateFile(fieldType.field_name), fileCallback);
         fs.writeFile(`${outputDir}/update.ts`, fillUpdateFile(fieldType.field_name), fileCallback);
