@@ -9,20 +9,20 @@ export type InterestsModelWithId = InterestsModel & {_id: string};
 export type PersonModel = {firstName:string,
 lastName:string,
 age:number,
-someFloat:number | undefined,
-someBoolean:boolean | undefined,
+height:number | undefined,
+hasDrivingLicenses:boolean | undefined,
 interests:[InterestsModelWithId]};
 export type PersonCreateModel = {firstName:string,
 lastName:string,
 age:number,
-someFloat:number | undefined,
-someBoolean:boolean | undefined,
+height:number | undefined,
+hasDrivingLicenses:boolean | undefined,
 interests:[string]};
 export type PersonUpdateModel = {firstName:string | undefined,
 lastName:string | undefined,
 age:number | undefined,
-someFloat:number | undefined,
-someBoolean:boolean | undefined,
+height:number | undefined,
+hasDrivingLicenses:boolean | undefined,
 interests:[string] | undefined};
 export type PersonModelWithId = PersonModel & {_id: string};
 export type CarModel = {mark:string | undefined,

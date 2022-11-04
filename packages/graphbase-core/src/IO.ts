@@ -18,17 +18,11 @@ const fileCallback = (err: NodeJS.ErrnoException | null) => {
     }
 };
 
-export interface Options {
-    stuccoConfig?: string;
-    pathToInputSchema?: string;
-    pathToOutputSchema?: string;
-}
-
-export const readSchemaFromFile = ({ pathToInputSchema = './input_schema.graphql' }: Options = {}) => {
+export const readSchemaFromFile = (pathToInputSchema: string) => {
     return fs.readFileSync(pathToInputSchema, 'utf-8');
 };
-export const writeSchemaToFile = (data: string, { pathToOutputSchema = './schema.graphql' }: Options = {}) => {
-    fs.writeFile(pathToOutputSchema, data, fileCallback);
+export const writeSchemaToFile = (data: string) => {
+    fs.writeFile('./schema.graphql', data, fileCallback);
 };
 
 export const writeModelToFile = (models: string[]) => {
@@ -65,6 +59,6 @@ export const generateCRUD = (fieldTypeArray: Field[]) => {
     });
 };
 
-export const generateStucco = (fieldNameArray: Field[], { stuccoConfig = './stucco.json' }: Options = {}) => {
-    fs.writeFile(stuccoConfig, generateStuccoJSON(fieldNameArray), fileCallback);
+export const generateStucco = (fieldNameArray: Field[]) => {
+    fs.writeFile('./stucco.json', generateStuccoJSON(fieldNameArray), fileCallback);
 };
