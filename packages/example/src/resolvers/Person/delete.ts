@@ -1,7 +1,8 @@
 /* DO NOT EDIT - generated */
-import { InterestsModel } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
+import { PersonModel } from '../../models/models';
+
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
     arguments: { _id: string };
@@ -9,7 +10,7 @@ type InputModel = Omit<FieldResolveInput, 'arguments'> & {
 
 const deleteHandler = (db: Db) => (input: InputModel) =>
 db
-    .collection<InterestsModel>('Interests')
+    .collection<PersonModel>('Person')
     .deleteOne({ _id: new ObjectId(input.arguments._id) })
     .then((res) => res.deletedCount > 0);
 

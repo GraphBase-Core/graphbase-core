@@ -1,3 +1,4 @@
+/* DO NOT EDIT - generated */
 export type InterestsModel = {name:string,
 description:string | undefined};
 export type InterestsCreateModel = {name:string,
@@ -9,19 +10,19 @@ export type PersonModel = {firstName:string,
 lastName:string,
 age:number,
 height:number | undefined,
-hasDrivingLicences:boolean | undefined,
+hasDrivingLicenses:boolean | undefined,
 interests:[InterestsModelWithId]};
 export type PersonCreateModel = {firstName:string,
 lastName:string,
 age:number,
 height:number | undefined,
-hasDrivingLicences:boolean | undefined,
+hasDrivingLicenses:boolean | undefined,
 interests:[string]};
 export type PersonUpdateModel = {firstName:string | undefined,
 lastName:string | undefined,
 age:number | undefined,
 height:number | undefined,
-hasDrivingLicences:boolean | undefined,
+hasDrivingLicenses:boolean | undefined,
 interests:[string] | undefined};
 export type PersonModelWithId = PersonModel & {_id: string};
 export type CarModel = {mark:string | undefined,

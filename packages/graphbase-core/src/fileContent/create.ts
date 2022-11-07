@@ -1,17 +1,18 @@
-export const fillCreateFile = (fildName: string) =>
+export const fillCreateFile = (fieldName: string) =>
     `/* DO NOT EDIT - generated */
-import { ${fildName}CreateModel } from '../../generated/model';
 import { Db } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
+import { ${fieldName}CreateModel } from '../../models/models';
+
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
-  arguments: { ${fildName.toLowerCase()}: ${fildName}CreateModel  };
+  arguments: { ${fieldName.toLowerCase()}: ${fieldName}CreateModel  };
 };
 
 const createHandler = (db: Db) => (input: InputModel) =>
   db
-    .collection<${fildName}CreateModel>('${fildName}')
-    .insertOne({ ...input.arguments.${fildName.toLowerCase()} })
+    .collection<${fieldName}CreateModel>('${fieldName}')
+    .insertOne({ ...input.arguments.${fieldName.toLowerCase()} })
     .then((res) => res.insertedId.toString());
 
 export const handler = makeHandler({ handlerFactory: createHandler });

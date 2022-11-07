@@ -10,10 +10,8 @@
   "homepage": "https://github.com/GraphBase-Core/graphbase-core#readme",
   "scripts": {
     "gen": "graphbase-core",
-    "start": "npm run gen && npm run build && dotenv -e .env stucco",
-    "lint": "eslint 'src/**/*.{js,ts}' --quiet --fix",
-    "build": "tsc --build tsconfig.json",
-    "stucco": "stucco"
+    "start": "npm run build && dotenv -e .env stucco",
+    "build": "tsc --build tsconfig.json"
   },
   "devDependencies": {
     "typescript": "^4.5.5"

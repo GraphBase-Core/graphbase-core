@@ -1,8 +1,8 @@
-export const fillReadOneFile = (fildName: string) =>
+export const fillReadOneFile = (fieldName: string) =>
     `/* DO NOT EDIT - generated */
-import { ${fildName}Model } from '../../generated/model';
 import { Db, ObjectId } from 'mongodb';
 import { makeHandler, FieldResolveInput } from 'graphbase-core';
+import { ${fieldName}Model } from '../../models/models';
 
 type InputModel = Omit<FieldResolveInput, 'arguments'> & {
   arguments: { _id: string };
@@ -10,7 +10,7 @@ type InputModel = Omit<FieldResolveInput, 'arguments'> & {
 
 const readOneHandler = (db: Db) => (input: InputModel) => 
  db
-.collection<${fildName}Model>('${fildName}')
+.collection<${fieldName}Model>('${fieldName}')
 .findOne({ _id: new ObjectId(input.arguments._id) })
 .then((i) => ({ ...i, _id: i?._id.toString() }));
 

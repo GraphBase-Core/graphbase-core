@@ -26,6 +26,7 @@
         "dev": "tsc --build tsconfig.json --watch & nodemon ./lib/app.js"
     },
     "devDependencies": {
+        "@types/yargs": "^17.0.13",
         "typescript": "^4.5.5"
     },
     "dependencies": {
@@ -42,6 +43,7 @@
         "nodemon": "^2.0.15",
         "prettier": "^2.5.1",
         "stucco-js": "^0.9.10",
-        "transform-graphql": "^0.0.4"
+        "transform-graphql": "^0.0.4",
+        "yargs": "^17.6.0"
     }
 }

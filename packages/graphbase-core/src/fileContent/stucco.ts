@@ -10,27 +10,27 @@ export const generateStuccoJSON = (fieldTypeArray: Field[]) => `{
             },
         "${fieldType.field_name}Mutation.create": {
         "resolve": {
-            "name": "lib/stucco/${fieldType.field_name}/create"
+            "name": "lib/resolvers/${fieldType.field_name}/create"
             }
         },
         "${fieldType.field_name}Mutation.update": {
             "resolve": {
-                "name": "lib/stucco/${fieldType.field_name}/update"
+                "name": "lib/resolvers/${fieldType.field_name}/update"
                 }
             },
         "${fieldType.field_name}Mutation.delete": {
             "resolve": {
-                "name": "lib/stucco/${fieldType.field_name}/delete"
+                "name": "lib/resolvers/${fieldType.field_name}/delete"
                 }
              },
         "${fieldType.field_name}Query.readAll": {
             "resolve": {
-                "name": "lib/stucco/${fieldType.field_name}/readAll"
+                "name": "lib/resolvers/${fieldType.field_name}/readAll"
                 }
             },
         "${fieldType.field_name}Query.readOne": {
             "resolve": {
-                "name": "lib/stucco/${fieldType.field_name}/readOne"
+                "name": "lib/resolvers/${fieldType.field_name}/readOne"
                 }
             }
         ${
@@ -40,7 +40,7 @@ export const generateStuccoJSON = (fieldTypeArray: Field[]) => `{
                           .replace(/[\[\]]/g, '')
                           .toLowerCase()}": {
                 "resolve": {
-                    "name": "lib/stucco/${fieldType.field_name}/${relation.replace(/[\[\]]/g, '').toLowerCase()}"
+                    "name": "lib/resolvers/${fieldType.field_name}/${relation.replace(/[\[\]]/g, '').toLowerCase()}"
                 }
             }
         `,
