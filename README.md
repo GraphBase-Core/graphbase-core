@@ -125,7 +125,7 @@ jedrzejdabrowski.jd@gmail.com
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT) 🕊
+[MIT](https://github.com/GraphBase-Core/graphbase-core/blob/main/LICENSE.md) 🕊
 
 ## Contribute
 
