@@ -3,7 +3,8 @@
 ## About
 
 Graphbase-core is a library which generates backend resolvers based on GraphQL schema provided by the user.
-If you are interested in how you can use it, please check this README file.
+
+If you would like to know how you can use it, please check this README file.
 
 ## Table of contents
 
@@ -73,7 +74,7 @@ For all types marked with directive @models graphbase-core library will generate
   - output schema with all required types, inputs, queries and mutations
   - typescript models 
   - CRUD resolvers
-  - routing stucco.json file
+  - routing file
   
 Default command:
   
@@ -87,11 +88,26 @@ If you want to specify input schema path you can run:
 npm run graphbase-core --inputSchema pathToInputSchema
 ```
 
-After running one of these commands you will get all models and resolvers required to run your backend!
+After running one of these commands graphbase-core library will generate all models and resolvers required to run your backend!
 
 ### How to start generated backend
 
-To run your backend you should build your project and then run stucco server. You can do it by running script like this: 
+Before running your backend you should configure your typescript build and provide database URL in .env file.
+
+To build your project properly you should add two lines to your tsconfig.json:
+
+```json
+    "rootDir": "./src",
+    "outDir": "./lib",
+```
+
+The last configuration step is creating a .env file with a connection link to your mongoDb database. Example .env file:
+
+```
+DATABASE_URL=mongodb+srv://userName:password@cluster0.nv1zf.mongodb.net/collection-name?retryWrites=true&w=majority
+```
+
+If you follow all configuration steps you can add to your package.json script this below and run it:
 
 ```json
   "scripts": {
@@ -99,30 +115,7 @@ To run your backend you should build your project and then run stucco server. Yo
   }
 ```
 
-#### tsconfig.json configuration
-
-Please, remember to add to your tsconfig.json this two lines:
-
-```json
-    "rootDir": "./src",
-    "outDir": "./lib",
-```
-
-#### .env file
-
-In .env file you should provide link to your mongoDb database like this:
-
-```
-DATABASE_URL=mongodb+srv://userName:password@cluster0.nv1zf.mongodb.net/collection-name?retryWrites=true&w=majority
-```
-
-If you follow all configuration steps you are ready to run:
-
-```
-npm run start
-```
-
-After that backend is running on port 8080 and you can execute all CRUD operations to your database!
+After that,the backend is running on port 8080 and you can execute all CRUD operations to your database!
 
 ## Support 
 
