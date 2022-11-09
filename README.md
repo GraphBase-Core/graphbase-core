@@ -97,8 +97,10 @@ Before running your backend you should configure your typescript build and provi
 To build your project properly you should add two lines to your tsconfig.json:
 
 ```json
+  "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./lib",
+    "outDir": "./lib"
+  }
 ```
 
 The last configuration step is creating a .env file with a connection link to your mongoDb database. Example .env file:
