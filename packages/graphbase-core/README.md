@@ -8,15 +8,15 @@ If you would like to know how you can use it, please check this README file.
 
 ## Table of contents
 
-- [About](#about)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Example Schema](#example-schema)
-  - [How to generate backend](#how-to-generate-backend)
-  - [How to start generated backend](#how-to-start-generated-backend)
-- [Support](#support)
-- [License](#license)
-- [Contribute](#contribute)
+-   [About](#about)
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [Example Schema](#example-schema)
+    -   [How to generate backend](#how-to-generate-backend)
+    -   [How to start generated backend](#how-to-start-generated-backend)
+-   [Support](#support)
+-   [License](#license)
+-   [Contribute](#contribute)
 
 ## Installation
 
@@ -38,30 +38,30 @@ The example schema could look like this:
 directive @model on OBJECT
 
 type Person @model {
-  firstName: String!
-  lastName: String!
-  age: Int!
-  height: Float
-  hasDrivingLicenses: Boolean
-  interests: [Interests!]!
+    firstName: String!
+    lastName: String!
+    age: Int!
+    height: Float
+    hasDrivingLicenses: Boolean
+    interests: [Interests!]!
 }
 
 type Interests @model {
-  name: String!
-  description: String
+    name: String!
+    description: String
 }
 
 type Query {
-  version: String
+    version: String
 }
 
 type Mutation {
-  version: String
+    version: String
 }
 
 schema {
-  query: Query
-  mutation: Mutation
+    query: Query
+    mutation: Mutation
 }
 ```
 
@@ -71,10 +71,10 @@ Please remember that schema must contain schema type with any Query and Mutation
 
 For all types marked with directive @models graphbase-core library will generate:
 
-- output schema with all required types, inputs, queries and mutations
-- typescript models
-- CRUD resolvers
-- routing file
+-   output schema with all required types, inputs, queries and mutations
+-   typescript models
+-   CRUD resolvers
+-   routing file
 
 Default command:
 
@@ -97,8 +97,10 @@ Before running your backend you should configure your typescript build and provi
 To build your project properly you should add two lines to your tsconfig.json:
 
 ```json
+  "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./lib",
+    "outDir": "./lib"
+  }
 ```
 
 The last configuration step is creating a .env file with a connection link to your mongoDb database. Example .env file:
