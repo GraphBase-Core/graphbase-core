@@ -1,6 +1,6 @@
 {
     "name": "graphbase-core",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Graphbase-core is a library which generates backend resolvers based on GraphQL schema provided by the user.",
     "main": "lib/app.js",
     "bin": {
