@@ -23,7 +23,7 @@ If you would like to know how you can use it, please check this README file.
 To install graphbase-core library you can run:
 
 ```
-npm i -g graphbase-core
+npm i --save-dev graphbase-core
 ```
 
 ## Usage
@@ -63,29 +63,29 @@ schema {
   query: Query
   mutation: Mutation
 }
-
 ```
 
-Please remember  that schema must contain schema type with any Query and Mutation type.
+Please remember that schema must contain schema type with any Query and Mutation type.
 
 ### How to generate backend
 
 For all types marked with directive @models graphbase-core library will generate:
-  - output schema with all required types, inputs, queries and mutations
-  - typescript models 
-  - CRUD resolvers
-  - routing file
-  
+
+- output schema with all required types, inputs, queries and mutations
+- typescript models
+- CRUD resolvers
+- routing file
+
 Default command:
-  
+
 ```
-npm run graphbase-core
+npx graphbase-core
 ```
 
 If you want to specify input schema path you can run:
 
 ```
-npm run graphbase-core --inputSchema pathToInputSchema
+npx graphbase-core --inputSchema pathToInputSchema
 ```
 
 After running one of these commands graphbase-core library will generate all models and resolvers required to run your backend!
@@ -109,7 +109,7 @@ The last configuration step is creating a .env file with a connection link to yo
 DATABASE_URL=mongodb+srv://userName:password@cluster0.nv1zf.mongodb.net/collection-name?retryWrites=true&w=majority
 ```
 
-If you follow all configuration steps you can add to your package.json script this below and run it:
+If you follow all configuration steps you can add to your package.json script like this below and run it:
 
 ```json
   "scripts": {
@@ -119,7 +119,7 @@ If you follow all configuration steps you can add to your package.json script th
 
 After that,the backend is running on port 8080 and you can execute all CRUD operations to your database!
 
-## Support 
+## Support
 
 If you have any problem during using graphbase-core library please create an issue or contact me directly:
 
