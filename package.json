@@ -1,5 +1,5 @@
 {
-  "name": "graphbase-core-client",
+  "name": "graphbase-core",
   "version": "1.0.0",
   "description": "graphbase-core is library with generates backend resolvers based on GraphQL schema provided by user",
   "license": "MIT",

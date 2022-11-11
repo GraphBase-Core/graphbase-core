@@ -11,7 +11,13 @@
         "type": "git",
         "url": "git+https://github.com/GraphBase-Core/graphbase-core.git"
     },
-    "author": "",
+    "author": "Jędrzej Dąbrowski",
+    "keywords": [
+        "graphql",
+        "backend",
+        "CRUD",
+        "typescript"
+    ],
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/GraphBase-Core/graphbase-core/issues"
