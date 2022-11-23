@@ -7,7 +7,8 @@
   "scripts": {
     "example": "npm run build -w graphbase-core && npm run start -w example",
     "example:windows": "npm run build:windows -w graphbase-core && npm run start -w example",
-    "stucco": "npm run stucco -w example"
+    "stucco": "npm run stucco -w example",
+    "test": "npm run test -w graphbase-core "
   },
   "workspaces": [
     "packages/*"
