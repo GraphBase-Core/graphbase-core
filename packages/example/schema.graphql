@@ -36,7 +36,7 @@ type InterestsMutation{
 
 input CreatePerson{
 	firstName: String!
-	lastName: String!
+	lastName: [String!]!
 	age: Int!
 	height: Float
 	hasDrivingLicenses: Boolean
@@ -45,7 +45,7 @@ input CreatePerson{
 
 input UpdatePerson{
 	firstName: String
-	lastName: String
+	lastName: [String]
 	age: Int
 	height: Float
 	hasDrivingLicenses: Boolean
@@ -55,7 +55,7 @@ input UpdatePerson{
 type PersonWithId{
 	_id: String!
 	firstName: String!
-	lastName: String!
+	lastName: [String!]!
 	age: Int!
 	height: Float
 	hasDrivingLicenses: Boolean
@@ -130,7 +130,7 @@ type Interests @model{
 
 type Person @model{
 	firstName: String!
-	lastName: String!
+	lastName: [String!]!
 	age: Int!
 	height: Float
 	hasDrivingLicenses: Boolean
