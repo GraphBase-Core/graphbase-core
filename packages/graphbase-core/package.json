@@ -45,12 +45,12 @@
         "prettier": "^2.5.1"
     },
     "dependencies": {
-        "graphql-js-tree": "^0.1.6",
-        "mongodb": "^4.4.0",
-        "stucco-js": "^0.9.10",
-        "typescript": "^4.5.5",
-        "transform-graphql": "^0.0.4",
-        "yargs": "^17.6.0",
-        "dotenv-cli": "^5.0.0"
+        "graphql-js-tree": "0.1.6",
+        "mongodb": "4.4.0",
+        "stucco-js": "0.9.10",
+        "typescript": "4.5.5",
+        "transform-graphql": "0.0.4",
+        "yargs": "17.6.0",
+        "dotenv-cli": "5.0.0"
     }
 }

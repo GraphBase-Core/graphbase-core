@@ -8,27 +8,27 @@
             },
         "InterestsMutation.create": {
         "resolve": {
-            "name": "lib/resolvers/Interests/create"
+            "name": "lib/resolvers/Interests/create.js"
             }
         },
         "InterestsMutation.update": {
             "resolve": {
-                "name": "lib/resolvers/Interests/update"
+                "name": "lib/resolvers/Interests/update.js"
                 }
             },
         "InterestsMutation.delete": {
             "resolve": {
-                "name": "lib/resolvers/Interests/delete"
+                "name": "lib/resolvers/Interests/delete.js"
                 }
              },
         "InterestsQuery.readAll": {
             "resolve": {
-                "name": "lib/resolvers/Interests/readAll"
+                "name": "lib/resolvers/Interests/readAll.js"
                 }
             },
         "InterestsQuery.readOne": {
             "resolve": {
-                "name": "lib/resolvers/Interests/readOne"
+                "name": "lib/resolvers/Interests/readOne.js"
                 }
             }
         
@@ -40,32 +40,32 @@
             },
         "PersonMutation.create": {
         "resolve": {
-            "name": "lib/resolvers/Person/create"
+            "name": "lib/resolvers/Person/create.js"
             }
         },
         "PersonMutation.update": {
             "resolve": {
-                "name": "lib/resolvers/Person/update"
+                "name": "lib/resolvers/Person/update.js"
                 }
             },
         "PersonMutation.delete": {
             "resolve": {
-                "name": "lib/resolvers/Person/delete"
+                "name": "lib/resolvers/Person/delete.js"
                 }
              },
         "PersonQuery.readAll": {
             "resolve": {
-                "name": "lib/resolvers/Person/readAll"
+                "name": "lib/resolvers/Person/readAll.js"
                 }
             },
         "PersonQuery.readOne": {
             "resolve": {
-                "name": "lib/resolvers/Person/readOne"
+                "name": "lib/resolvers/Person/readOne.js"
                 }
             }
         ,"PersonWithId.interests": {
                 "resolve": {
-                    "name": "lib/resolvers/Person/interests"
+                    "name": "lib/resolvers/Person/interests.js"
                 }
             }
         
@@ -77,27 +77,27 @@
             },
         "CarMutation.create": {
         "resolve": {
-            "name": "lib/resolvers/Car/create"
+            "name": "lib/resolvers/Car/create.js"
             }
         },
         "CarMutation.update": {
             "resolve": {
-                "name": "lib/resolvers/Car/update"
+                "name": "lib/resolvers/Car/update.js"
                 }
             },
         "CarMutation.delete": {
             "resolve": {
-                "name": "lib/resolvers/Car/delete"
+                "name": "lib/resolvers/Car/delete.js"
                 }
              },
         "CarQuery.readAll": {
             "resolve": {
-                "name": "lib/resolvers/Car/readAll"
+                "name": "lib/resolvers/Car/readAll.js"
                 }
             },
         "CarQuery.readOne": {
             "resolve": {
-                "name": "lib/resolvers/Car/readOne"
+                "name": "lib/resolvers/Car/readOne.js"
                 }
             }
         
