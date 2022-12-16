@@ -18,7 +18,6 @@ export const transformerCRUD: TransformerDef = {
 
         const typedFields = TreeToGraphQL.parse({ nodes: field.args });
         const notScalarTypes = getNotScalarTypes(typedFields);
-        // resolvery poprawic
         fieldsArray.push({
             field_name: field.name,
             relations: notScalarTypes,

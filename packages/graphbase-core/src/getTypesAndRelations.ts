@@ -19,14 +19,14 @@ export const getTypesAndRelations = (graphQLType: string, isMutationType: boolea
             break;
         case '[String]':
         case '[ID]':
-            typescriptType = `[string${!isRequiredArrayElement ? ' | undefined]' : ''}`;
+            typescriptType = `[string${!isRequiredArrayElement ? ' | undefined]' : ']'}`;
             break;
         case '[Int]':
         case '[Float]':
-            typescriptType = `[number${!isRequiredArrayElement ? ' | undefined]' : ''}`;
+            typescriptType = `[number${!isRequiredArrayElement ? ' | undefined]' : ']'}`;
             break;
         case '[Boolean]':
-            typescriptType = `[boolean${!isRequiredArrayElement ? ' | undefined]' : ''}`;
+            typescriptType = `[boolean${!isRequiredArrayElement ? ' | undefined]' : ']'}`;
             break;
         default:
             if (isMutationType) {
