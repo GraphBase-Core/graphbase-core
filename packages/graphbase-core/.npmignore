@@ -1,4 +1,6 @@
 src
+tests
+jest.config.ts
 .prettierrc.js
 .eslintrc.js
 tsconfig.json
