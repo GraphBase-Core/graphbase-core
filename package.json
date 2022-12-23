@@ -6,7 +6,8 @@
   "main": "app.js",
   "scripts": {
     "example": "npm run build -w graphbase-core && npm run start -w example",
-    "example:windows": "npm run build:windows -w graphbase-core && npm run start -w example",
+    "build": "npm run build:windows -w graphbase-core",
+    "example:windows": "npm run build && npm run start -w example",
     "stucco": "npm run stucco -w example",
     "test": "npm run test -w graphbase-core "
   },
