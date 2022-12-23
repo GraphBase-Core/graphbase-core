@@ -5,9 +5,9 @@ type StructuredData = {
     [x: string]: string | StructuredData;
 };
 
-const newStrigify = (x: StructuredData): string => {
+const newStringify = (x: StructuredData): string => {
     return `{${Object.entries(x)
-        .map(([key, val]) => `${key}:${typeof val === 'object' ? newStrigify(val) : val}`)
+        .map(([key, val]) => `${key}:${typeof val === 'object' ? newStringify(val) : val}`)
         .join(',\n')}}`;
 };
 
@@ -24,9 +24,9 @@ export const generateModel = (typedFields: string, nameField: string) => {
         updateModelObject[fieldTuple[0]] = getTypesAndRelations(fieldTuple[1].replace(/!$/, ''), true);
     });
     const idType = '{_id: string}';
-    const model = `export type ${nameField}Model = ` + newStrigify(modelObject);
-    const createModel = `export type ${nameField}CreateModel = ` + newStrigify(createModelObject);
-    const updateModel = `export type ${nameField}UpdateModel = ` + newStrigify(updateModelObject);
+    const model = `export type ${nameField}Model = ` + newStringify(modelObject);
+    const createModel = `export type ${nameField}CreateModel = ` + newStringify(createModelObject);
+    const updateModel = `export type ${nameField}UpdateModel = ` + newStringify(updateModelObject);
     const modelWithId = `export type ${nameField}ModelWithId = ${nameField}Model & ${idType}`;
     models.push(model, createModel, updateModel, modelWithId);
 };

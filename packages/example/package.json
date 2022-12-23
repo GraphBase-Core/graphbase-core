@@ -9,15 +9,12 @@
   },
   "homepage": "https://github.com/GraphBase-Core/graphbase-core#readme",
   "scripts": {
-    "gen": "graphbase-core",
+    "gen": "npx graphbase-core",
     "start": "npm run gen && npm run build && dotenv -e .env stucco",
-    "build": "tsc --build tsconfig.json"
+    "build": "tsc --build tsconfig.json",
+    "stucco": "dotenv -e .env stucco"
   },
   "devDependencies": {
-    "typescript": "^4.5.5"
-  },
-  "dependencies": {
-    "dotenv-cli": "^5.0.0",
-    "stucco-js": "^0.9.10"
+    "graphbase-core": "*"
   }
 }

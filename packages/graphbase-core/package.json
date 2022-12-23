@@ -1,6 +1,6 @@
 {
     "name": "graphbase-core",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Graphbase-core is a library which generates backend resolvers based on GraphQL schema provided by the user.",
     "main": "lib/app.js",
     "bin": {
@@ -41,7 +41,6 @@
         "eslint": "^8.9.0",
         "eslint-config-prettier": "^8.4.0",
         "eslint-plugin-prettier": "^4.0.0",
-        "graphbase-core": "^1.0.0",
         "jest": "^29.3.1",
         "node": "^17.4.0",
         "nodemon": "^2.0.15",

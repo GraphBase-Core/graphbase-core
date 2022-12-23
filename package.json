@@ -1,6 +1,6 @@
 {
-  "name": "graphbase-core",
-  "version": "1.0.5",
+  "name": "graphbase-core-monorepo",
+  "version": "1.0.6",
   "description": "graphbase-core is library with generates backend resolvers based on GraphQL schema provided by user",
   "license": "MIT",
   "main": "app.js",
@@ -12,8 +12,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {
-    "graphbase-core": "file:packages/graphbase-core"
-  }
+  ]
 }
